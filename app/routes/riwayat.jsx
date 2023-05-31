@@ -1,10 +1,10 @@
 import Dashboard from "../components/Dashboard/Dashboard";
 
-export default function Barang() {
+export default function Riwayat() {
   return (
     <>
-      <Dashboard title="Barang" active='barang'>
-        Hallo Barang
+      <Dashboard title="Riwayat" active='riwayat'>
+        Hallo Riwayat
       </Dashboard>
     </>
   );

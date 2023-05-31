@@ -1,11 +1,11 @@
 import NavbarHeader from "./NavbarHeader"
 import Sidebar from "./Sidebar"
 
-export default function Dashboard({children}) {
+export default function Dashboard({children, title, active}) {
     return (
         <>
             <div className="sb-nav-fixed bg-light">
-                <Sidebar/>
+                <Sidebar active={active}/>
                 <NavbarHeader/>
                 <div id="layoutSidenav">
                     {/* <div id="layoutSidenav_nav">
@@ -27,7 +27,7 @@ export default function Dashboard({children}) {
                                     <li className="breadcrumb-item">Home</li>
                                     <li className="breadcrumb-item active">Dashboard</li>
                                 </ol> */}
-                                <h3 className="my-4">Dashboard</h3>
+                                <h3 className="my-4">{title}</h3>
                                 {children}
                             </div>
                         </main>

@@ -1,12 +1,12 @@
 
-export default function Sidebar() {
+export default function Sidebar({active}) {
     return (
         <>
             <div className="sidebar">
                 <div className="my-2 text-center">
                     <img src='images/logo3.svg' alt="logo" />
                 </div>
-                <div className="sidebar-link-active">
+                <div className={active=='home' ? "sidebar-link-active" : "sidebar-link"}>
                     <a href="/">
                         <div className="sidebar-link-icon">
                             <img src='images/house-door.svg' alt="house-door" />
@@ -14,7 +14,7 @@ export default function Sidebar() {
                         Home
                     </a>
                 </div>
-                <div className="sidebar-link">
+                <div className={active=='barang' ? "sidebar-link-active" : "sidebar-link"}>
                     <a href="/barang">
                         <div className="sidebar-link-icon">
                             <img src='images/database.svg' alt="database" />
@@ -22,7 +22,7 @@ export default function Sidebar() {
                         Barang
                     </a>
                 </div>
-                <div className="sidebar-link">
+                <div className={active=='riwayat' ? "sidebar-link-active" : "sidebar-link"}>
                     <a href="/riwayat">
                         <div className="sidebar-link-icon">
                             <img src='images/clock-history.svg' alt="clock-history" />
@@ -30,7 +30,7 @@ export default function Sidebar() {
                         Riwayat
                     </a>
                 </div>
-                <div className="sidebar-link">
+                <div className={active=='penjualan' ? "sidebar-link-active" : "sidebar-link"}>
                     <a href="/penjualan">
                         <div className="sidebar-link-icon">
                             <img src='images/file-earmark-bar-graph-fill.svg' alt="file-earmark-bar-graph-fill" />
@@ -38,7 +38,7 @@ export default function Sidebar() {
                         Data Penjualan
                     </a>
                 </div>
-                <div className="sidebar-link">
+                <div className={active=='prediksi' ? "sidebar-link-active" : "sidebar-link"}>
                     <a href="/prediksi">
                         <div className="sidebar-link-icon">
                             <img src='images/graph-up-arrow.svg' alt="graph-up-arrow" />
