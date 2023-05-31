@@ -23,11 +23,11 @@ export default function Dashboard({children}) {
                     <div id="layoutSidenav_content" className="bg-light">
                         <main>
                             <div className="container-fluid px-4">
-                                <ol className="breadcrumb my-4">
+                                {/* <ol className="breadcrumb my-4">
                                     <li className="breadcrumb-item">Home</li>
                                     <li className="breadcrumb-item active">Dashboard</li>
-                                </ol>
-                                <h3 className="mb-4">Dashboard</h3>
+                                </ol> */}
+                                <h3 className="my-4">Dashboard</h3>
                                 {children}
                             </div>
                         </main>

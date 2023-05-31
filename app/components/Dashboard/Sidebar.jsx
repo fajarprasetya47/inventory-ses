@@ -1,48 +1,47 @@
-// import { asset } from "../../../assets/asset"
 
 export default function Sidebar() {
     return (
         <>
             <div className="sidebar">
                 <div className="my-2 text-center">
-                    {/* <img src={asset.logo3} alt="logo" /> */}
+                    <img src='images/logo3.svg' alt="logo" />
                 </div>
                 <div className="sidebar-link-active">
-                    <a href="/home">
+                    <a href="/">
                         <div className="sidebar-link-icon">
-                            {/* <img src={asset.fiHome} alt="home" /> */}
+                            <img src='images/house-door.svg' alt="house-door" />
                         </div>
                         Home
                     </a>
                 </div>
                 <div className="sidebar-link">
-                    <a href="/cars">
+                    <a href="/barang">
                         <div className="sidebar-link-icon">
-                            {/* <img src={asset.fiTruck} alt="car" /> */}
+                            <img src='images/database.svg' alt="database" />
                         </div>
                         Barang
                     </a>
                 </div>
                 <div className="sidebar-link">
-                    <a href="/cars">
+                    <a href="/riwayat">
                         <div className="sidebar-link-icon">
-                            {/* <img src={asset.fiTruck} alt="car" /> */}
+                            <img src='images/clock-history.svg' alt="clock-history" />
                         </div>
                         Riwayat
                     </a>
                 </div>
                 <div className="sidebar-link">
-                    <a href="/cars">
+                    <a href="/penjualan">
                         <div className="sidebar-link-icon">
-                            {/* <img src={asset.fiTruck} alt="car" /> */}
+                            <img src='images/file-earmark-bar-graph-fill.svg' alt="file-earmark-bar-graph-fill" />
                         </div>
                         Data Penjualan
                     </a>
                 </div>
                 <div className="sidebar-link">
-                    <a href="/cars">
+                    <a href="/prediksi">
                         <div className="sidebar-link-icon">
-                            {/* <img src={asset.fiTruck} alt="car" /> */}
+                            <img src='images/graph-up-arrow.svg' alt="graph-up-arrow" />
                         </div>
                         Prediksi
                     </a>
