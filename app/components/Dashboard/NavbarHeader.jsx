@@ -6,9 +6,9 @@ export default function NavbarHeader() {
         <>
             <nav className="sb-topnav navbar navbar-expand navbar-light bg-white">
                 {/* <img className="ms-0 me-5" src={asset.logo2} alt="logo" /> */}
-                <button className="btn btn-link btn-sm order-1 order-lg-0 ms-5 m me-4 me-lg-0" id="sidebarToggle" href="#!">
-                    {/* <img src={asset.fiMenu} alt="fi_menu" /> */}
-                </button>
+                {/* <button className="btn btn-link btn-sm order-1 order-lg-0 ms-5 m me-4 me-lg-0" id="sidebarToggle" href="#!">
+                    <img src={asset.fiMenu} alt="fi_menu" />
+                </button> */}
                 {/* <form className="d-none d-md-inline-block form-inline ms-auto me-3 my-2 my-md-0">
                     <div className="input-group search">
                         <input className="form-control" type="text" placeholder="&#xF002; Search" aria-label="Search for..." aria-describedby="btnNavbarSearch" />
