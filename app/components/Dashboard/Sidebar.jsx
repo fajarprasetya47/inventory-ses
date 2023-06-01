@@ -33,9 +33,18 @@ export default function Sidebar({active}) {
                 <div className={active=='penjualan' ? "sidebar-link-active" : "sidebar-link"}>
                     <a href="/penjualan">
                         <div className="sidebar-link-icon">
-                            <img src='images/file-earmark-bar-graph-fill.svg' alt="file-earmark-bar-graph-fill" />
+                            {/* <img src='images/file-earmark-bar-graph-fill.svg' alt="file-earmark-bar-graph-fill" /> */}
+                            <img src='images/file-spreadsheet.svg' alt="graph-up-arrow" />
                         </div>
                         Data Penjualan
+                    </a>
+                </div>
+                <div className={active=='laporan' ? "sidebar-link-active" : "sidebar-link"}>
+                    <a href="/laporan">
+                        <div className="sidebar-link-icon">
+                            <img src='images/file-earmark.svg' alt="graph-up-arrow" />
+                        </div>
+                        Laporan
                     </a>
                 </div>
                 <div className={active=='prediksi' ? "sidebar-link-active" : "sidebar-link"}>
