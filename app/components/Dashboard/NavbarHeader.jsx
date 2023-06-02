@@ -9,13 +9,14 @@ export default function NavbarHeader() {
                 {/* <button className="btn btn-link btn-sm order-1 order-lg-0 ms-5 m me-4 me-lg-0" id="sidebarToggle" href="#!">
                     <img src={asset.fiMenu} alt="fi_menu" />
                 </button> */}
+                <h2>Inventory SES</h2>
                 {/* <form className="d-none d-md-inline-block form-inline ms-auto me-3 my-2 my-md-0">
                     <div className="input-group search">
                         <input className="form-control" type="text" placeholder="&#xF002; Search" aria-label="Search for..." aria-describedby="btnNavbarSearch" />
                         <button className="btn btn-outline-primary" id="btnNavbarSearch" type="button">Search</button>
                     </div>
                 </form> */}
-                <ul className="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
+                <ul className="navbar-nav ms-auto me-3 me-lg-4">
                     <li className="nav-item dropdown d-flex">
                         <div className="my-auto ps-3 d-flex justify-content-evenly">
                             <div className="user-avatar me-1">
