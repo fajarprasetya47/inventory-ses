@@ -17,7 +17,7 @@ export const links = () => {
   ]
 };
 
-function Document({title, children}) {
+function Document({ title, children }) {
   return (
     <html lang="en">
       <head>
@@ -43,7 +43,7 @@ function Document({title, children}) {
 export default function App() {
   return (
     <Document title='Inventory SES'>
-      <Outlet/>
+      <Outlet />
     </Document>
   );
 }
