@@ -1,7 +1,14 @@
+import * as React from 'react';
 import Dashboard from "../components/Dashboard/Dashboard";
+import ModalLayout from "../components/Modal";
+import TambahPengguna from '../components/Pengguna/TambahPengguna';
 import Tabel from "../components/Tabel";
 
 export default function Pengguna() {
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+
   const columns = [
     { field: 'id', headerName: 'ID', width: 70 },
     { field: 'firstName', headerName: 'First name', width: 130 },
@@ -35,9 +42,12 @@ export default function Pengguna() {
     <>
       <Dashboard title="Daftar Pengguna" active='pengguna'>
         <div className="my-2">
-          <button className="btn btn-sm btn-success">+ Tambah Pengguna</button>
+          <button onClick={handleOpen} className="btn btn-sm btn-success">+ Tambah Pengguna</button>
         </div>
         <Tabel columns={columns} rows={rows} />
+        <ModalLayout open={open} onClose={handleClose}>
+          <TambahPengguna/>
+        </ModalLayout>
       </Dashboard>
     </>
   );
