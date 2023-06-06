@@ -37,6 +37,9 @@ export default function Barang() {
   return (
     <>
       <Dashboard title="Barang" active='barang'>
+        <div className="my-2">
+          <button className="btn btn-sm btn-success">+ Tambah Barang</button>
+        </div>
         <Tabel columns={columns} rows={rows}/>
       </Dashboard>
     </>
