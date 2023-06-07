@@ -11,11 +11,11 @@ export default function TambahPengguna() {
                 </div>
                 <div class="mb-2">
                     <label class="form-label">Username</label>
-                    <input type="text" name="username" class="form-control" />
+                    <input type="text" name="username" class="form-control" required />
                 </div>
                 <div class="mb-2">
                     <label class="form-label">Password</label>
-                    <input type="password" name="password" class="form-control" />
+                    <input type="password" name="password" class="form-control" required/>
                 </div>
                 <button type="submit" class="btn btn-md btn-success w-100">Submit</button>
             </form>

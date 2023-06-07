@@ -2,9 +2,7 @@ export default function LoginLayout() {
   return (
     <>
       <div className="signin-content bg-white">
-        {/* <img className="signin-img" src={asset.signIn} alt="" /> */}
         <div className="signin-form">
-          {/* <img src={asset.logo} alt="" /> */}
           <h1>Welcome, Inventory SES</h1>
           {/* {message ?
             <div className="signin-alert">
@@ -16,12 +14,12 @@ export default function LoginLayout() {
             : <></>} */}
           <div className="form">
             <div className="mb-3">
-              <label for="exampleInputEmail1" className="form-label">Email</label>
-              <input type="text" name="email" required className="form-control" placeholder="Contoh: johndee@gmail.com atau admin@admin.com" id="exampleInputEmail1" />
+              <label className="form-label">Username</label>
+              <input type="text" name="username" required className="form-control" placeholder="Contoh: admin@admin.com" />
             </div>
             <div className="mb-3">
-              <label for="exampleInputPassword1" className="form-label">Password</label>
-              <input type="password" name="password" required placeholder="6+ karakter" className="form-control" id="exampleInputPassword1" />
+              <label className="form-label">Password</label>
+              <input type="password" name="password" required placeholder="Password" className="form-control" />
             </div>
             <div className="sign-in-button">
               <button className="btn btn-dark-blue w-100">Sign in</button>

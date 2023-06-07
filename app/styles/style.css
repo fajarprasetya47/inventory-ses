@@ -12,8 +12,9 @@ body {
     width: 65%;
 }
 .signin-content .signin-form {
-    flex-basis: 35%;
+    flex-basis: 50%;
     padding: 150px 50px;
+    margin: 0 auto;
 }
 .signin-content .signin-form h1{
     font-size: 24px;
@@ -37,17 +38,11 @@ body {
     .signin-content .signin-img{
         display: none;
     }
-    /* .signin-content {
-        background-image: url(../img/sign-in.png);
-    } */
     .signin-content .signin-form {
         margin: 0 auto;
         background-color: #fff;
         flex-basis: 70%;
         padding: 150px 20px;;
-    }
-    .sidebar{
-        overflow-y: scroll;
     }
 }
 
