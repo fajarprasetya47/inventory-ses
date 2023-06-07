@@ -14,8 +14,7 @@ const style = {
     p: 2
 };
 
-export default function ModalLayout({ children, onClose, open }) {
-
+export default function ModalLayout({ children, onClose, open, title }) {
     return (
         <div>
             <Modal
@@ -23,7 +22,15 @@ export default function ModalLayout({ children, onClose, open }) {
                 onClose={onClose}
             >
                 <Box sx={style}>
-                    {children}
+                    <div className="modal-wrap">
+                        <div className="d-flex flex-direction-column justify-content-between">
+                            <h4>{title}</h4>
+                            <div onClick={onClose} style={{ cursor: 'pointer' }}>
+                                <img src="images/x-lg.svg" alt="x-lg" />
+                            </div>
+                        </div>
+                        {children}
+                    </div>
                 </Box>
             </Modal>
         </div>
