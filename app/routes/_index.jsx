@@ -1,10 +1,11 @@
 import Dashboard from "../components/Dashboard/Dashboard";
+import Home from "../components/Home";
 
 export default function Index() {
   return (
     <>
-      <Dashboard title="Home" active='home'>
-        Hallo Home
+      <Dashboard title="Welcome" active='home'>
+        <Home/>
       </Dashboard>
     </>
   );

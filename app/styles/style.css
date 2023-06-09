@@ -33,19 +33,6 @@ body {
     font-family: FontAwesome !important;
 }
 
-/* Media Responsive */
-@media screen and (max-width: 1000px) {
-    .signin-content .signin-img{
-        display: none;
-    }
-    .signin-content .signin-form {
-        margin: 0 auto;
-        background-color: #fff;
-        flex-basis: 70%;
-        padding: 150px 20px;;
-    }
-}
-
 .sidebar {
     position: fixed;
     z-index: 1200;
@@ -162,4 +149,40 @@ body {
 .required-label::after {
     content: "*";
     color: red;
+}
+
+.home-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+.home-button {
+    border: 3px solid #eee;
+    border-radius: 10px;
+    color: #000;
+    background: #fff;
+    padding: 20px 20px;
+    width: 220px;
+}
+.home-button:hover {
+    background: #eee;
+}
+.home-button-img {
+    width: 40px;
+}
+
+/* Media Responsive */
+@media screen and (max-width: 800px) {
+    .signin-content .signin-img{
+        display: none;
+    }
+    .signin-content .signin-form {
+        margin: 0 auto;
+        background-color: #fff;
+        flex-basis: 70%;
+        padding: 150px 20px;;
+    }
+    .home-button{
+        width: 100%;
+    }
 }
