@@ -14,7 +14,7 @@ model Barang {
   id         String @id @default(auto()) @map("_id") @db.ObjectId
   namaBarang String
   modal      Int
-  hargaJUal  Int
+  hargaJual  Int
   stok       Int
   status     String
 }
