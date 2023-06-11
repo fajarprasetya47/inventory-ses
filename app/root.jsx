@@ -1,13 +1,16 @@
 //import { cssBundleHref } from "@remix-run/css-bundle";
+import Error from './components/Error';
 import style from './styles/style.css'
 import styleSB from './styles/styleSB.css'
 import {
+  Link,
   Links,
   LiveReload,
   Meta,
   Outlet,
   Scripts,
   ScrollRestoration,
+  useCatch,
 } from "@remix-run/react";
 
 export const links = () => {
@@ -46,4 +49,31 @@ export default function App() {
       <Outlet />
     </Document>
   );
+}
+
+export function CatchBoundary() {
+  const caughtResponse = useCatch();
+  return (
+    <Document title={caughtResponse?.statusText}>
+      <main>
+        <Error title={caughtResponse?.statusText}>
+          <p>{caughtResponse.data?.message || 'Something went wrong. Please try again later.'}</p>
+          <p><Link to='/'>Back</Link></p>
+        </Error>
+      </main>
+    </Document>
+  )
+}
+
+export function ErrorBoundary({error}) {
+  return (
+    <Document title="An error occured">
+      <main>
+        <Error title="An error occured">
+          <p>{error?.message || 'Something went wrong. Please try again later.'}</p>
+          <p><Link to='/'>Back</Link></p>
+        </Error>
+      </main>
+    </Document>
+  )
 }
