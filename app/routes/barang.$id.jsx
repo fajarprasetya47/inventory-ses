@@ -36,7 +36,6 @@ export async function action({params, request}) {
   } else if (request.method === 'DELETE') {
       await deleteBarang(idBarang);
       return redirect('/barang');
-      // return {deleteId : expenseId}
   }
 
 }

@@ -1,5 +1,6 @@
 import { useState } from "react"
 import { Link } from "@remix-run/react";
+import { Collapse } from "@mui/material";
 
 export default function Sidebar({ active }) {
     const [display, setDisplay] = useState(false);
@@ -42,12 +43,7 @@ export default function Sidebar({ active }) {
                     Transaksi
                     <img src='/images/chevron-compact-down.svg' alt="chevron-compact-down" style={{ width: '16px' }} />
                 </div>
-                <div
-                    className="border-bottom"
-                    style={{
-                        display: `${display == true ? 'block' : 'none'}`,
-                    }}
-                >
+                <Collapse in={display}>
                     <Link to='/barangmasuk'>
                         <div className="sidebar-link">
                             <div>
@@ -64,7 +60,14 @@ export default function Sidebar({ active }) {
                             Barang Keluar
                         </div>
                     </Link>
-                </div>
+                </Collapse>
+                {/* <div
+                    className="border-bottom"
+                    style={{
+                        display: `${display == true ? 'block' : 'none'}`,
+                    }}
+                >
+                </div> */}
                 {/* <div className={active == 'penjualan' ? "sidebar-link-active" : "sidebar-link"}>
                     <a href="/penjualan">
                         <div className="sidebar-link-icon">

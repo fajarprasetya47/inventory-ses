@@ -58,7 +58,8 @@ export default function Barang() {
       <Dashboard title="Barang" active='barang'>
         <div className="my-2">
           <button onClick={handleOpen} disabled={isSubmitting} className="btn btn-sm btn-success">
-            {isSubmitting ? 'Loading...' : '+ Tambah Barang'}
+            {/* {isSubmitting ? 'Loading...' : '+ Tambah Barang'} */}
+            + Tambah Barang
           </button>
         </div>
         <Tabel columns={columns} rows={barang} />

@@ -10,12 +10,11 @@ export default function BarangMasuk() {
   const handleClose = () => setOpen(false);
 
   const columns = [
-    { field: 'id', headerName: 'ID', width: 70 },
+    { field: 'id', headerName: 'ID', width: 100 },
     { field: 'tanggalMasuk', headerName: 'Tanggal Masuk', width: 130 },
     { field: 'namaBarang', headerName: 'Nama Barang', width: 130 },
     { field: 'jumlahMasuk', headerName: 'Jumlah Masuk', width: 130 },
     { field: 'keterangan', headerName: 'Keterangan', width: 130 },
-
   ];
 
   const rows = [
