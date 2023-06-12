@@ -5,7 +5,7 @@ import ModalLayout from "../components/Modal";
 import Tabel from "../components/Tabel";
 import { redirect } from '@remix-run/node'
 import { addBarang, getBarang } from '../data/barang.server';
-import { Link, Outlet, useActionData, useLoaderData, useNavigation } from '@remix-run/react';
+import { Link, Outlet, useActionData, useFetcher, useLoaderData, useNavigation } from '@remix-run/react';
 
 export default function Barang() {
   const navigation = useNavigation();
@@ -18,6 +18,17 @@ export default function Barang() {
 
   const isSubmitting = navigation.state != 'idle';
 
+  const fetcher = useFetcher();
+  const deleteHandle = (id) => {
+    const proceed = confirm('Hapus item ini?');
+    if (!proceed) {
+      return;
+    }
+    fetcher.submit(null, {
+      method: 'delete',
+      action: `/barang/${id}`
+    })
+  }
   const columns = [
     { field: 'id', headerName: 'ID', width: 100 },
     { field: 'namaBarang', headerName: 'Nama Barang', width: 200 },
@@ -35,16 +46,13 @@ export default function Barang() {
         return (
           <div className='d-flex flex-direction-column gap-3'>
             <Link to={`${params?.row?.id?.toString()}`} className='btn btn-sm btn-warning'>Edit</Link>
-            <button className='btn btn-sm btn-danger'>Hapus</button>
+            <button onClick={() => deleteHandle(params.row.id)} className='btn btn-sm btn-danger'>Hapus</button>
           </div>
         )
       },
     },
   ];
 
-  // const rows = [
-  //   { id: 1, namaBarang: 'Bolt Ikan 1 Kg', modal: 19500, hargaJual: 23000, stok: 40 },
-  // ];
   return (
     <>
       <Dashboard title="Barang" active='barang'>
@@ -57,7 +65,7 @@ export default function Barang() {
         <ModalLayout title='Tambah Barang' open={isSubmitting ? false : open} onClose={handleClose} >
           <TambahBarang />
         </ModalLayout>
-        <Outlet/>
+        <Outlet />
       </Dashboard>
     </>
   );

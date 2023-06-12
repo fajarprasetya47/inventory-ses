@@ -47,6 +47,9 @@ export default function EditBarang() {
           <label class="form-label">Stok</label>
           <input type="number" defaultValue={barangId?.stok} name="stok" class="form-control" disabled />
         </div>
+        <div class="mb-2 d-none">
+          <input type="text" defaultValue={barangId?.status} name="status" class="form-control" disabled />
+        </div>
         <button
           type="submit"
           disabled={isSubmitting}

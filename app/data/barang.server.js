@@ -39,14 +39,16 @@ export async function getBarangId(id) {
     }
 }
 
-export async function updateExpense(id, dataBarang) {
+export async function updateBarang(id, dataBarang) {
     try {
         await prisma.barang.update({
             where: { id },
             data: {
-                title: dataBarang.title,
-                amount: +dataBarang.amount,
-                date: new Date(expenseData.date)
+                namaBarang: dataBarang.namaBarang,
+                modal: +dataBarang.modal,
+                hargaJual: +dataBarang.hargaJual,
+                stok: dataBarang.stok,
+                status: dataBarang.status,
             }
         });
     } catch (error) {

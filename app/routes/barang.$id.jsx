@@ -1,7 +1,8 @@
 import { useNavigate, useParams } from "@remix-run/react";
 import ModalLayout from "../components/Modal";
 import EditBarang from "../components/Barang/EditBarang";
-import { getBarangId } from "../data/barang.server";
+import { deleteBarang, getBarangId, updateBarang } from "../data/barang.server";
+import { redirect } from "@remix-run/node";
 
 export default function barangId() {
   // const navigate = useNavigate();
@@ -22,4 +23,20 @@ export default function barangId() {
 export async function loader({params}) {
   const barangId = await getBarangId(params.id);
   return barangId;
+}
+
+export async function action({params, request}) {
+  const idBarang = params.id;
+
+  if(request.method === 'PATCH') {
+      const formData = await request.formData();
+      const dataBarang = Object.fromEntries(formData);
+      await updateBarang(idBarang, dataBarang);
+      return redirect('/barang');
+  } else if (request.method === 'DELETE') {
+      await deleteBarang(idBarang);
+      return redirect('/barang');
+      // return {deleteId : expenseId}
+  }
+
 }
