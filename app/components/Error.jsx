@@ -4,7 +4,7 @@ function Error({ title, children }) {
     <div className="w-50 m-auto text-center py-4 text-decoration-none">
       <img
         className="my-3"
-        src="images/exclamation-circle-fill.svg"
+        src="/images/exclamation-circle-fill.svg"
         alt="exclamation-circle-fill"
         style={{ width: '80px' }}
       />

@@ -5,13 +5,18 @@ import ModalLayout from "../components/Modal";
 import Tabel from "../components/Tabel";
 import { redirect } from '@remix-run/node'
 import { addBarang, getBarang } from '../data/barang.server';
-import { Link, useLoaderData } from '@remix-run/react';
+import { Link, Outlet, useActionData, useLoaderData, useNavigation } from '@remix-run/react';
 
 export default function Barang() {
+  const navigation = useNavigation();
   const barang = useLoaderData();
+  console.log(barang);
+  // const message = useActionData()
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+
+  const isSubmitting = navigation.state != 'idle';
 
   const columns = [
     { field: 'id', headerName: 'ID', width: 100 },
@@ -25,6 +30,7 @@ export default function Barang() {
       headerName: 'Action',
       width: 200,
       disableClickEventBubbling: true,
+      sortable: false,
       renderCell: (params) => {
         return (
           <div className='d-flex flex-direction-column gap-3'>
@@ -36,20 +42,22 @@ export default function Barang() {
     },
   ];
 
-  const rows = [
-    { id: 1, namaBarang: 'Bolt Ikan 1 Kg', modal: 19500, hargaJual: 23000, stok: 40 },
-
-  ];
+  // const rows = [
+  //   { id: 1, namaBarang: 'Bolt Ikan 1 Kg', modal: 19500, hargaJual: 23000, stok: 40 },
+  // ];
   return (
     <>
       <Dashboard title="Barang" active='barang'>
         <div className="my-2">
-          <button onClick={handleOpen} className="btn btn-sm btn-success">+ Tambah Barang</button>
+          <button onClick={handleOpen} disabled={isSubmitting} className="btn btn-sm btn-success">
+            {isSubmitting ? 'Loading...' : '+ Tambah Barang'}
+          </button>
         </div>
         <Tabel columns={columns} rows={barang} />
-        <ModalLayout title='Tambah Barang' open={open} onClose={handleClose} >
+        <ModalLayout title='Tambah Barang' open={isSubmitting ? false : open} onClose={handleClose} >
           <TambahBarang />
         </ModalLayout>
+        <Outlet/>
       </Dashboard>
     </>
   );
@@ -65,5 +73,7 @@ export async function action({ request }) {
   const dataBarang = Object.fromEntries(formData);
   console.log(dataBarang);
   await addBarang(dataBarang);
-  return redirect('/barang');
+  redirect('/barang');
+  const message = 'Berhasil'
+  return message;
 }

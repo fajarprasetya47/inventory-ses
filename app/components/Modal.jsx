@@ -26,7 +26,7 @@ export default function ModalLayout({ children, onClose, open, title }) {
                         <div className="d-flex flex-direction-column justify-content-between">
                             <h4>{title}</h4>
                             <div onClick={onClose} style={{ cursor: 'pointer' }}>
-                                <img src="images/x-lg.svg" alt="x-lg" />
+                                <img src="/images/x-lg.svg" alt="x-lg" />
                             </div>
                         </div>
                         {children}
