@@ -5,7 +5,6 @@ export async function addBarangMasuk(dataBarang) {
         return await prisma.transaksiMasuk.create({
             data: {
                 tanggalMasuk: new Date(dataBarang.tanggalMasuk),
-                namaBarang: dataBarang.namaBarang,
                 jumlahMasuk: +dataBarang.jumlahMasuk,
                 keterangan: dataBarang.keterangan,
                 Barang: { connect: { id: dataBarang.idBarang } },
@@ -20,7 +19,7 @@ export async function addBarangMasuk(dataBarang) {
 export async function getBarangMasuk() {
     try {
         const barang = await prisma.transaksiMasuk.findMany({
-            orderBy: { tanggalMasuk: 'asc' }
+            orderBy: { id: 'desc' }
         });
         return barang;
     } catch (error) {
@@ -48,6 +47,17 @@ export async function getBarangMasukMonth(month) {
         return barang;
     } catch (error) {
         console.log(error);
-        throw new Error('Failed to get Barang');
+        throw new Error('Failed to get Transaksi Masuk');
+    }
+}
+
+export async function deleteBarangMasuk(id) {
+    try {
+        await prisma.transaksiMasuk.delete({
+            where: { id }
+        });
+    } catch (error) {
+        console.log(error);
+        throw new Error('Failed to delete Transaksi Masuk');
     }
 }

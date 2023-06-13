@@ -15,7 +15,8 @@ model Barang {
   namaBarang      String
   modal           Int
   hargaJual       Int
-  stok            Int
+  stok            Float
+  satuan          String
   status          String
   TransaksiMasuk  TransaksiMasuk[]
   TransaksiKeluar TransaksiKeluar[]
@@ -24,8 +25,7 @@ model Barang {
 model TransaksiMasuk {
   id           String   @id @default(auto()) @map("_id") @db.ObjectId
   tanggalMasuk DateTime
-  namaBarang   String
-  jumlahMasuk  Int
+  jumlahMasuk  Float
   keterangan   String
   Barang       Barang   @relation(fields: [idBarang], references: [id])
   idBarang     String   @db.ObjectId
@@ -34,8 +34,7 @@ model TransaksiMasuk {
 model TransaksiKeluar {
   id            String   @id @default(auto()) @map("_id") @db.ObjectId
   tanggalKeluar DateTime
-  namaBarang    String
-  jumlahKeluar  Int
+  jumlahKeluar  Float
   keterangan    String
   Barang        Barang   @relation(fields: [idBarang], references: [id])
   idBarang      String   @db.ObjectId

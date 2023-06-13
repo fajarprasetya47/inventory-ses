@@ -10,7 +10,7 @@ import { Link, Outlet, useActionData, useFetcher, useLoaderData, useNavigation }
 export default function Barang() {
   const navigation = useNavigation();
   const barang = useLoaderData();
-  console.log(barang);
+  // console.log(barang);
   // const message = useActionData()
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
@@ -30,12 +30,45 @@ export default function Barang() {
     })
   }
   const columns = [
-    { field: 'id', headerName: 'ID', width: 100 },
+    // { field: 'id', headerName: 'ID', width: 100 },
+    { 
+      field: 'number', 
+      headerName: 'No', 
+      width: 50, 
+      renderCell: (index) => index.api.getRowIndexRelativeToVisibleRows(index.row.id) + 1
+    },
     { field: 'namaBarang', headerName: 'Nama Barang', width: 200 },
-    { field: 'modal', headerName: 'Modal', width: 90 },
+    { field: 'modal', headerName: 'Modal', width: 100 },
     { field: 'hargaJual', headerName: 'Harga Jual', width: 100 },
-    { field: 'stok', headerName: 'Stok', width: 70 },
-    { field: 'status', headerName: 'Status', width: 80 },
+    { field: 'stok', headerName: 'Stok', width: 80 },
+    { field: 'satuan', headerName: 'Satuan', width: 70 },
+    {
+      field: 'status',
+      headerName: 'Status',
+      width: 100,
+      renderCell: (params) => (
+        <>
+          {params.row.status == 'kosong' ? (
+            <>
+              <div className='dot-red mx-1'></div>
+              <label>kosong</label>
+            </>
+          ) : <></>}
+          {params.row.status == 'minim' ? (
+            <>
+              <div className='dot-yellow mx-1'></div>
+              <label>minim</label>
+            </>
+          ) : <></>}
+          {params.row.status == 'ready' ? (
+            <>
+              <div className='dot-green mx-1'></div>
+              <label>ready</label>
+            </>
+          ) : <></>}
+        </>
+      )
+    },
     {
       field: 'action',
       headerName: 'Action',
@@ -57,7 +90,7 @@ export default function Barang() {
     <>
       <Dashboard title="Barang" active='barang'>
         <div className="my-2">
-          <button onClick={handleOpen} disabled={isSubmitting} className="btn btn-sm btn-success">
+          <button onClick={handleOpen} disabled={isSubmitting} className="btn btn-success">
             {/* {isSubmitting ? 'Loading...' : '+ Tambah Barang'} */}
             + Tambah Barang
           </button>
@@ -80,7 +113,7 @@ export async function loader() {
 export async function action({ request }) {
   const formData = await request.formData();
   const dataBarang = Object.fromEntries(formData);
-  console.log(dataBarang);
+  // console.log(dataBarang);
   await addBarang(dataBarang);
   redirect('/barang');
   const message = 'Berhasil'

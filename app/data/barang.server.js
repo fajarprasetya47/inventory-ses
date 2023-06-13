@@ -8,7 +8,8 @@ export async function addBarang(dataBarang) {
                 modal: +dataBarang.modal,
                 hargaJual: +dataBarang.hargaJual,
                 stok: 0,
-                status: 'habis'
+                satuan: dataBarang.satuan,
+                status: 'kosong'
             }
         });
     } catch (error) {
@@ -58,6 +59,7 @@ export async function updateBarang(id, dataBarang) {
                 modal: +dataBarang.modal || undefined,
                 hargaJual: +dataBarang.hargaJual || undefined,
                 stok: stok || undefined,
+                satuan: dataBarang.satuan || undefined,
                 status: status || undefined,
             }
         });
@@ -70,9 +72,9 @@ export function updateStatusBarang(stok) {
     if (stok == 0) {
         return 'kosong';
     } else if (stok < 10) {
-        return 'sedikit';
+        return 'minim';
     } else if(stok>=10){
-        return 'aman';
+        return 'ready';
     }
 }
 

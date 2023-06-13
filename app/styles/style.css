@@ -173,6 +173,31 @@ body {
     width: 40px;
 }
 
+.dot-red {
+    width: 10px;
+    height: 10px;
+    background-color: red;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+}
+.dot-yellow {
+    width: 10px;
+    height: 10px;
+    background-color: yellow;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+}
+.dot-green {
+    width: 10px;
+    height: 10px;
+    background-color: green;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+}
+
 /* Media Responsive */
 @media screen and (max-width: 800px) {
     .signin-content .signin-img{

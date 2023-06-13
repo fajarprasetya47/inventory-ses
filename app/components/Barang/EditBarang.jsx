@@ -1,6 +1,7 @@
 import { Form, useActionData, useLoaderData, useMatches, useNavigation, useParams } from '@remix-run/react'
 import { Alert, Collapse } from '@mui/material';
 import { useState } from 'react';
+import Select from 'react-select';
 
 export default function EditBarang() {
   // const [open, setOpen] = useState(true);
@@ -15,7 +16,12 @@ export default function EditBarang() {
   // if (params.id && !barangId) {
   //   throw new Error('Invalid Id');
   // }
-  
+
+  const option = [
+    { label: 'Pcs', value: 'Pcs' },
+    { label: 'Kg', value: 'Kg' },
+  ]
+
   return (
     <>
       {/* {message != undefined ? (
@@ -33,7 +39,7 @@ export default function EditBarang() {
       <Form method='patch'>
         <div class="mb-2">
           <label class="form-label">Nama Barang</label>
-          <input type="text"  defaultValue={barangId?.namaBarang} name="namaBarang" class="form-control" required />
+          <input type="text" defaultValue={barangId?.namaBarang} name="namaBarang" class="form-control" required />
         </div>
         <div class="mb-2">
           <label class="form-label">Modal</label>
@@ -44,11 +50,22 @@ export default function EditBarang() {
           <input type="number" defaultValue={barangId?.hargaJual} name="hargaJual" class="form-control" required />
         </div>
         <div class="mb-2">
+          <label class="form-label">Pilih Satuan</label>
+          <Select
+            options={option}
+            defaultValue={option?.find((item) => item.value == barangId?.satuan)}
+            name='satuan'
+            isSearchable={true}
+            placeholder='Pilih satuan...'
+            required
+          />
+        </div>
+        <div class="mb-2">
           <label class="form-label">Stok</label>
-          <input type="number" defaultValue={barangId?.stok} name="stok" class="form-control" disabled />
+          <input type="number" step='0.1' defaultValue={barangId?.stok} name="stok" class="form-control" disabled />
         </div>
         <div class="mb-2 d-none">
-          <input type="text" defaultValue={barangId?.status} name="status" class="form-control" disabled />
+          <input type="hidden" defaultValue={barangId?.status} name="status" class="form-control" disabled />
         </div>
         <button
           type="submit"

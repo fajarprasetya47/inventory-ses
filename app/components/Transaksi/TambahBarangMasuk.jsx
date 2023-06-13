@@ -8,9 +8,8 @@ import { useState } from 'react';
 
 export default function TambahBarangMasuk() {
   const [stok, setStok] = useState();
-  const [namaBarang, setNamaBarang] = useState();
   const matches = useMatches();
-  const barang = matches.find((barang) => barang.id === 'routes/barangmasuk')?.data;
+  const barang = matches.find((barang) => barang.id === 'routes/barangmasuk')?.data?.barang;
 
   const option = barang?.map((item) => (
     { label: item.namaBarang, value: item.id }
@@ -19,9 +18,7 @@ export default function TambahBarangMasuk() {
   const handleIdBarang = (e) => {
     const id = e.value;
     const stok = barang.find((barang) => barang.id === id)?.stok;
-    const namaBarang = barang.find((barang) => barang.id === id)?.namaBarang;
     setStok(stok);
-    setNamaBarang(namaBarang);
   }
   return (
     <>
@@ -51,9 +48,6 @@ export default function TambahBarangMasuk() {
           <label class="form-label">Pilih Barang</label>
           <Select onChange={handleIdBarang} options={option} name='idBarang' isSearchable={true} placeholder='Pilih Barang...' required />
         </div>
-        <div class="mb-2">
-          <input type="hidden" defaultValue={namaBarang} name="namaBarang" class="form-control" />
-        </div>
         <div class='mb-2'>
           <label class="form-label">Stok</label>
           <input type="number" name='stok' defaultValue={stok} class="form-control" disabled />
@@ -61,7 +55,7 @@ export default function TambahBarangMasuk() {
         </div>
         <div class="mb-2">
           <label class="form-label">Jumlah Barang Masuk</label>
-          <input type="number" min='0' name="jumlahMasuk" class="form-control" required />
+          <input type="number" min='0' step='0.1' name="jumlahMasuk" class="form-control" required />
         </div>
         <div class="mb-2">
           <label class="form-label">Keterangan</label>

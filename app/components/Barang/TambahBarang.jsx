@@ -1,19 +1,25 @@
 import { Form, useActionData, useNavigation } from '@remix-run/react'
 import { Alert, Collapse } from '@mui/material';
 import { useState } from 'react';
+import Select from 'react-select';
 
 export default function TambahBarang() {
   const [open, setOpen] = useState(true);
   const navigation = useNavigation();
   const message = useActionData();
   const isSubmitting = navigation.state != 'idle';
+
+  const option = [
+    { label: 'Pcs', value: 'Pcs' },
+    { label: 'Kg', value: 'Kg' },
+  ]
   return (
     <>
       {message != undefined ? (
         <Collapse in={open}>
           <Alert
             severity='success'
-            onClose={() => { 
+            onClose={() => {
               setOpen(false);
             }}
           >
@@ -35,8 +41,12 @@ export default function TambahBarang() {
           <input type="number" min='0' name="hargaJual" class="form-control" required />
         </div>
         <div class="mb-2">
+          <label class="form-label">Pilih Satuan</label>
+          <Select options={option} name='satuan' isSearchable={true} placeholder='Pilih satuan...' required />
+        </div>
+        <div class="mb-2">
           <label class="form-label">Stok</label>
-          <input type="number" name="stok" defaultValue='0' class="form-control" disabled />
+          <input type="number" name="stok" step='0.1' defaultValue='0' class="form-control" disabled />
         </div>
         <button
           type="submit"
