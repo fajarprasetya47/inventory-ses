@@ -11,12 +11,14 @@ datasource db {
 }
 
 model Barang {
-  id         String @id @default(auto()) @map("_id") @db.ObjectId
-  namaBarang String
-  modal      Int
-  hargaJual  Int
-  stok       Int
-  status     String
+  id              String            @id @default(auto()) @map("_id") @db.ObjectId
+  namaBarang      String
+  modal           Int
+  hargaJual       Int
+  stok            Int
+  status          String
+  TransaksiMasuk  TransaksiMasuk[]
+  TransaksiKeluar TransaksiKeluar[]
 }
 
 model TransaksiMasuk {
@@ -25,6 +27,8 @@ model TransaksiMasuk {
   namaBarang   String
   jumlahMasuk  Int
   keterangan   String
+  Barang       Barang   @relation(fields: [idBarang], references: [id])
+  idBarang     String   @db.ObjectId
 }
 
 model TransaksiKeluar {
@@ -33,6 +37,8 @@ model TransaksiKeluar {
   namaBarang    String
   jumlahKeluar  Int
   keterangan    String
+  Barang        Barang   @relation(fields: [idBarang], references: [id])
+  idBarang      String   @db.ObjectId
 }
 
 model Pengguna {

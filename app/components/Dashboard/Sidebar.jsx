@@ -43,7 +43,7 @@ export default function Sidebar({ active }) {
                     Transaksi
                     <img src='/images/chevron-compact-down.svg' alt="chevron-compact-down" style={{ width: '16px' }} />
                 </div>
-                <Collapse in={display}>
+                <Collapse in={display} style={{minHeight: 'auto'}}>
                     <Link to='/barangmasuk'>
                         <div className="sidebar-link">
                             <div>

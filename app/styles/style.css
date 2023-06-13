@@ -35,6 +35,7 @@ body {
 
 .sidebar {
     position: fixed;
+    padding-bottom: 15px;
     z-index: 1200;
     display: flex;
     flex-direction: column;

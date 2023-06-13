@@ -28,11 +28,11 @@ export default function TambahBarang() {
         </div>
         <div class="mb-2">
           <label class="form-label">Modal</label>
-          <input type="number" name="modal" class="form-control" required />
+          <input type="number" min='0' name="modal" class="form-control" required />
         </div>
         <div class="mb-2">
           <label class="form-label">Harga Jual</label>
-          <input type="number" name="hargaJual" class="form-control" required />
+          <input type="number" min='0' name="hargaJual" class="form-control" required />
         </div>
         <div class="mb-2">
           <label class="form-label">Stok</label>
