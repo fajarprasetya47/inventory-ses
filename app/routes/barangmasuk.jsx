@@ -59,7 +59,7 @@ export default function BarangMasuk() {
 
   return (
     <>
-      <Dashboard title="Transaksi Barang Masuk" active='transaksi'>
+      <Dashboard title="Transaksi Barang Masuk" active='barangmasuk'>
         <div className="my-2">
           <button onClick={handleOpen} disabled={isSubmitting} className="btn btn-md btn-success">+ Barang Masuk</button>
         </div>

@@ -8,6 +8,7 @@ import { useState } from 'react';
 
 export default function TambahBarangMasuk() {
   const [stok, setStok] = useState();
+  const [satuan, setSatuan] = useState();
   const matches = useMatches();
   const barang = matches.find((barang) => barang.id === 'routes/barangmasuk')?.data?.barang;
 
@@ -18,7 +19,9 @@ export default function TambahBarangMasuk() {
   const handleIdBarang = (e) => {
     const id = e.value;
     const stok = barang.find((barang) => barang.id === id)?.stok;
+    const satuan = barang.find((barang) => barang.id === id)?.satuan;
     setStok(stok);
+    setSatuan(satuan);
   }
   return (
     <>
@@ -53,9 +56,15 @@ export default function TambahBarangMasuk() {
           <input type="number" name='stok' defaultValue={stok} class="form-control" disabled />
           <input type="hidden" defaultValue={stok} name="stok" class="form-control" />
         </div>
-        <div class="mb-2">
-          <label class="form-label">Jumlah Barang Masuk</label>
-          <input type="number" min='0' step='0.1' name="jumlahMasuk" class="form-control" required />
+        <div class="mb-2 row">
+          <div className='col-10'>
+            <label class="form-label">Jumlah Barang Masuk</label>
+            <input type="number" min='0' step='0.1' name="jumlahMasuk" class="form-control" required />
+          </div>
+          <div className='col-2'>
+            <label class="form-label">Satuan</label>
+            <input type="text" defaultValue={satuan} name="satuan" class="form-control" disabled />
+          </div>
         </div>
         <div class="mb-2">
           <label class="form-label">Keterangan</label>

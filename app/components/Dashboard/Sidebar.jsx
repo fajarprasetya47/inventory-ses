@@ -36,38 +36,31 @@ export default function Sidebar({ active }) {
                         Barang
                     </div>
                 </Link>
-                <div onClick={handleOpen} className={active == 'transaksi' ? "sidebar-link-active" : "sidebar-link"}>
+                {/* <div onClick={handleOpen} className={active == 'transaksi' ? "sidebar-link-active" : "sidebar-link"}>
                     <div className="sidebar-link-icon">
                         <img src='/images/arrow-left-right.svg' alt="arrow-left-right" />
                     </div>
                     Transaksi
                     <img src='/images/chevron-compact-down.svg' alt="chevron-compact-down" style={{ width: '16px' }} />
-                </div>
-                <Collapse in={display} style={{minHeight: 'auto'}}>
-                    <Link to='/barangmasuk'>
-                        <div className="sidebar-link">
-                            <div>
-                                <img src='/images/arrow-down-right-circle.svg' alt="arrow-down-right-circle" />
-                            </div>
-                            Barang Masuk
-                        </div>
-                    </Link>
-                    <Link to='/barangkeluar'>
-                        <div className="sidebar-link">
-                            <div>
-                                <img src='/images/arrow-up-left-circle.svg' alt="arrow-up-left-circle" />
-                            </div>
-                            Barang Keluar
-                        </div>
-                    </Link>
-                </Collapse>
-                {/* <div
-                    className="border-bottom"
-                    style={{
-                        display: `${display == true ? 'block' : 'none'}`,
-                    }}
-                >
                 </div> */}
+                <Link to='/barangmasuk'>
+                    <div className={active == 'barangmasuk' ? "sidebar-link-active" : "sidebar-link"}>
+                        <div>
+                            <img src='/images/arrow-down-right-circle.svg' alt="arrow-down-right-circle" />
+                        </div>
+                        Barang Masuk
+                    </div>
+                </Link>
+                <Link to='/barangkeluar'>
+                    <div className={active == 'barangkeluar' ? "sidebar-link-active" : "sidebar-link"}>
+                        <div>
+                            <img src='/images/arrow-up-left-circle.svg' alt="arrow-up-left-circle" />
+                        </div>
+                        Barang Keluar
+                    </div>
+                </Link>
+                {/* <Collapse in={display} style={{ minHeight: 'auto' }}>
+                </Collapse> */}
                 {/* <div className={active == 'penjualan' ? "sidebar-link-active" : "sidebar-link"}>
                     <a href="/penjualan">
                         <div className="sidebar-link-icon">
