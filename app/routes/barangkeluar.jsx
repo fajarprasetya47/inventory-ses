@@ -5,7 +5,7 @@ import Tabel from "../components/Tabel";
 import TambahBarangKeluar from '../components/Transaksi/TambahBarangKeluar';
 import { getBarang, updateBarang } from '../data/barang.server';
 import { addBarangKeluar, getBarangKeluar } from '../data/barangkeluar.server';
-import { useLoaderData, useNavigation } from '@remix-run/react';
+import { Link, Outlet, useLoaderData, useNavigation } from '@remix-run/react';
 import { redirect } from '@remix-run/node';
 
 export default function BarangKeluar() {
@@ -17,16 +17,6 @@ export default function BarangKeluar() {
 
   const isSubmitting = navigation.state != 'idle';
 
-  const deleteHandle = (id) => {
-    const proceed = confirm('Hapus transaksi ini?');
-    if (!proceed) {
-      return;
-    }
-    fetcher.submit(null, {
-      method: 'delete',
-      action: `/barangmasuk/${id}`
-    })
-  }
   const columns = [
     // { field: 'id', headerName: 'ID', width: 100 },
     {
@@ -50,7 +40,7 @@ export default function BarangKeluar() {
       width: 80,
       renderCell: (params) => {
         return (
-          <button onClick={() => deleteHandle(params.row.id)} className='btn btn-sm btn-danger' style={{ cursor: 'pointer' }}>Hapus</button>
+          <Link to={`/barangkeluar/${params.row.id}`} className='btn btn-sm btn-dark-blue'>Detail</Link>
         )
       },
     }
@@ -66,15 +56,15 @@ export default function BarangKeluar() {
         <ModalLayout title='Tambah Barang Keluar' open={isSubmitting ? false : open} onClose={handleClose}>
           <TambahBarangKeluar />
         </ModalLayout>
+        <Outlet/>
       </Dashboard>
     </>
   );
 }
 
 export async function loader() {
-  let barang = await getBarang();
+  const barang = await getBarang();
   const barangKeluar = await getBarangKeluar();
-  barang = barang.filter((item) => item.status != 'kosong');
   return { barang, barangKeluar };
 }
 

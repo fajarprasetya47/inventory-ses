@@ -9,7 +9,8 @@ export default function TambahBarangKeluar() {
   const [stok, setStok] = useState();
   const [satuan, setSatuan] = useState();
   const matches = useMatches();
-  const barang = matches.find((barang) => barang.id === 'routes/barangkeluar')?.data?.barang;
+  let barang = matches.find((barang) => barang.id === 'routes/barangkeluar')?.data?.barang;
+  barang = barang.filter((item) => item.status != 'kosong');
 
   const option = barang?.map((item) => (
     { label: item.namaBarang, value: item.id }

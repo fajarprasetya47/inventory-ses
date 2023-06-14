@@ -6,7 +6,7 @@ import TambahBarangMasuk from "../components/Transaksi/TambahBarangMasuk";
 import { addBarangMasuk, getBarangMasuk } from '../data/barangmasuk.server';
 import { redirect } from '@remix-run/node'
 import { getBarang, updateBarang } from '../data/barang.server';
-import { useLoaderData, useNavigation } from '@remix-run/react';
+import { Link, Outlet, useLoaderData, useNavigation } from '@remix-run/react';
 
 export default function BarangMasuk() {
   const navigation = useNavigation();
@@ -16,17 +16,6 @@ export default function BarangMasuk() {
   const handleClose = () => setOpen(false);
 
   const isSubmitting = navigation.state != 'idle';
-
-  const deleteHandle = (id) => {
-    const proceed = confirm('Hapus transaksi ini?');
-    if (!proceed) {
-      return;
-    }
-    fetcher.submit(null, {
-      method: 'delete',
-      action: `/barangmasuk/${id}`
-    })
-  }
 
   const columns = [
     // { field: 'id', headerName: 'ID', width: 100 },
@@ -48,10 +37,10 @@ export default function BarangMasuk() {
     {
       field: 'action',
       headerName: 'Action',
-      width: 70,
+      width: 80,
       renderCell: (params) => {
         return (
-          <label onClick={() => deleteHandle(params.row.id)} className='text-muted' style={{ cursor: 'pointer' }}>Hapus</label>
+          <Link to={`/barangmasuk/${params.row.id}`} className='btn btn-sm btn-dark-blue'>Detail</Link>
         )
       },
     }
@@ -67,6 +56,7 @@ export default function BarangMasuk() {
         <ModalLayout title='Tambah Barang Masuk' open={isSubmitting ? false : open} onClose={handleClose}>
           <TambahBarangMasuk />
         </ModalLayout>
+        <Outlet/>
       </Dashboard>
     </>
   );
