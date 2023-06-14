@@ -1,4 +1,5 @@
 import Dashboard from "../components/Dashboard/Dashboard";
+import { requireUserSession } from "../data/auth.server";
 
 export default function Laporan() {
   return (
@@ -8,4 +9,9 @@ export default function Laporan() {
       </Dashboard>
     </>
   );
+}
+
+export async function loader({ request }) {
+  const userId = await requireUserSession(request);
+  return { userId };
 }

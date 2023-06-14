@@ -7,6 +7,7 @@ import { addBarangMasuk, getBarangMasuk } from '../data/barangmasuk.server';
 import { redirect } from '@remix-run/node'
 import { getBarang, updateBarang } from '../data/barang.server';
 import { Link, Outlet, useLoaderData, useNavigation } from '@remix-run/react';
+import { requireUserSession } from '../data/auth.server';
 
 export default function BarangMasuk() {
   const navigation = useNavigation();
@@ -62,10 +63,11 @@ export default function BarangMasuk() {
   );
 }
 
-export async function loader() {
+export async function loader({request}) {
+  const userId =  await requireUserSession(request);
   const barang = await getBarang();
   const barangMasuk = await getBarangMasuk()
-  return { barang, barangMasuk };
+  return { barang, barangMasuk, userId };
 }
 
 export async function action({ request }) {

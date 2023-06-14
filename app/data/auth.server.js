@@ -29,11 +29,9 @@ export async function getUserFromSession(request) {
     );
 
     const userId = session.get('userId');
-
     if (!userId) {
         return null;
     }
-
     return userId;
 }
 
@@ -42,7 +40,7 @@ export async function destroyUserSession(request) {
         request.headers.get('Cookie')
     );
 
-    return redirect('/', {
+    return redirect('/login', {
         headers: {
             'Set-Cookie': await sessionStorage.destroySession(session),
         },
@@ -51,50 +49,84 @@ export async function destroyUserSession(request) {
 
 export async function requireUserSession(request) {
     const userId = await getUserFromSession(request);
-
-    if(!userId) {
-        throw redirect('/auth?mode=login');
+    if (!userId) {
+        throw redirect('/login');
     }
 
     return userId;
 }
 
-export async function signup({ email, password }) {
-    const existingUser = await prisma.user.findFirst({ where: { email } });
+export async function signup({ username, password, role }) {
+    const existingUser = await prisma.pengguna.findFirst({ where: { username } });
 
     if (existingUser) {
-        const error = new Error('A user with the provided email address exists already');
+        const error = new Error('Username must unique');
         error.status = 422;
         throw error;
     }
 
     const passwordHash = await hash(password, 12)
-
-    const user = await prisma.user.create({
-        data: {
-            email: email,
-            password: passwordHash
-        }
-    });
-    return createUserSession(user.id, '/expenses');
+    try {
+        return await prisma.pengguna.create({
+            data: {
+                username: username,
+                password: passwordHash,
+                role: role,
+            }
+        });
+    } catch (error) {
+        console.log(error);
+        throw new Error('cant create to Pengguna');
+    }
 }
 
-export async function login({ email, password }) {
-    const existingUser = await prisma.user.findFirst({ where: { email } });
-
+export async function login({ username, password }) {
+    const existingUser = await prisma.pengguna.findFirst({ where: { username } });
     if (!existingUser) {
-        const error = new Error('Could not log you in, please check the provided credentials.');
+        const error = new Error('Cannot login, please check the provided credentials.');
         error.status = 401;
         throw error;
     }
 
     const passwordCorrect = await compare(password, existingUser.password);
-
     if (!passwordCorrect) {
-        const error = new Error('Could not log you in, please check the provided credentials.');
+        const error = new Error('Wrong password, please check the provided credentials.');
         error.status = 401;
         throw error;
     }
 
-    return createUserSession(existingUser, '/expenses');
+    return createUserSession(existingUser, '/');
+}
+
+export async function getPengguna() {
+    try {
+        const user = await prisma.pengguna.findMany();
+        return user;
+    } catch (error) {
+        console.log(error);
+        throw new Error('Failed to get Pengguna');
+    }
+}
+
+export async function getPenggunaId(id) {
+    try {
+        const user = await prisma.pengguna.findFirst({
+            where: { id }
+        });
+        return user;
+    } catch (error) {
+        console.log(error);
+        throw new Error('Failed to get Pengguna Id');
+    }
+}
+
+export async function deletePengguna(id) {
+    try {
+        return await prisma.pengguna.delete({
+            where: { id }
+        })
+    } catch (error) {
+        console.log(error);
+        throw new Error('Failed to delete Pengguna');
+    }
 }

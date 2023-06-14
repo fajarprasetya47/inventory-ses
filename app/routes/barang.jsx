@@ -5,13 +5,12 @@ import ModalLayout from "../components/Modal";
 import Tabel from "../components/Tabel";
 import { redirect } from '@remix-run/node'
 import { addBarang, getBarang } from '../data/barang.server';
-import { Link, Outlet, useActionData, useFetcher, useLoaderData, useNavigation } from '@remix-run/react';
+import { Link, Outlet, useFetcher, useLoaderData, useNavigation } from '@remix-run/react';
+import { requireUserSession } from '../data/auth.server';
 
 export default function Barang() {
   const navigation = useNavigation();
-  const barang = useLoaderData();
-  // console.log(barang);
-  // const message = useActionData()
+  const load = useLoaderData();
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -30,11 +29,10 @@ export default function Barang() {
     })
   }
   const columns = [
-    // { field: 'id', headerName: 'ID', width: 100 },
-    { 
-      field: 'number', 
-      headerName: 'No', 
-      width: 50, 
+    {
+      field: 'number',
+      headerName: 'No',
+      width: 50,
       renderCell: (index) => index.api.getRowIndexRelativeToVisibleRows(index.row.id) + 1
     },
     { field: 'namaBarang', headerName: 'Nama Barang', width: 200 },
@@ -95,7 +93,7 @@ export default function Barang() {
             + Tambah Barang
           </button>
         </div>
-        <Tabel columns={columns} rows={barang} />
+        <Tabel columns={columns} rows={load?.barang} />
         <ModalLayout title='Tambah Barang' open={isSubmitting ? false : open} onClose={handleClose} >
           <TambahBarang />
         </ModalLayout>
@@ -105,15 +103,15 @@ export default function Barang() {
   );
 }
 
-export async function loader() {
+export async function loader({request}) {
+  const userId = await requireUserSession(request);
   const barang = await getBarang();
-  return barang;
+  return { barang, userId };
 }
 
 export async function action({ request }) {
   const formData = await request.formData();
   const dataBarang = Object.fromEntries(formData);
-  // console.log(dataBarang);
   await addBarang(dataBarang);
   redirect('/barang');
   const message = 'Berhasil'

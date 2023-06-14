@@ -7,6 +7,7 @@ import { getBarang, updateBarang } from '../data/barang.server';
 import { addBarangKeluar, getBarangKeluar } from '../data/barangkeluar.server';
 import { Link, Outlet, useLoaderData, useNavigation } from '@remix-run/react';
 import { redirect } from '@remix-run/node';
+import { requireUserSession } from '../data/auth.server';
 
 export default function BarangKeluar() {
   const navigation = useNavigation();
@@ -62,10 +63,11 @@ export default function BarangKeluar() {
   );
 }
 
-export async function loader() {
+export async function loader({request}) {
+  const userId =  await requireUserSession(request);
   const barang = await getBarang();
   const barangKeluar = await getBarangKeluar();
-  return { barang, barangKeluar };
+  return { barang, barangKeluar, userId };
 }
 
 export async function action({ request }) {
