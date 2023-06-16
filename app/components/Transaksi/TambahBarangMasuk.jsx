@@ -1,14 +1,9 @@
 import Select from 'react-select'
-// import { DatePicker } from '@mui/x-date-pickers/DatePicker'
-// import { LocalizationProvider } from '@mui/x-date-pickers'
-// import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns'
 import { Form, useMatches } from '@remix-run/react';
 import { useState } from 'react';
 
-
 export default function TambahBarangMasuk() {
-  const [stok, setStok] = useState();
-  const [satuan, setSatuan] = useState();
+  const [data, setData] = useState();
   const matches = useMatches();
   const barang = matches.find((barang) => barang.id === 'routes/barangmasuk')?.data?.barang;
 
@@ -18,10 +13,8 @@ export default function TambahBarangMasuk() {
 
   const handleIdBarang = (e) => {
     const id = e.value;
-    const stok = barang.find((barang) => barang.id === id)?.stok;
-    const satuan = barang.find((barang) => barang.id === id)?.satuan;
-    setStok(stok);
-    setSatuan(satuan);
+    const barangId = barang.find((barang) => barang.id === id);
+    setData(barangId);
   }
   return (
     <>
@@ -29,14 +22,6 @@ export default function TambahBarangMasuk() {
         <div class="mb-2">
           <label class="form-label">Tanggal Masuk</label>
           <div>
-            {/* <LocalizationProvider dateAdapter={AdapterDateFns}>
-              <DatePicker
-                sx={{width: '100%'}}
-                slotProps={{textField: {size: 'small'}}}
-                label='tanggalMasuk'
-
-              />
-            </LocalizationProvider> */}
             <input
               type="date"
               className='form-control'
@@ -53,8 +38,8 @@ export default function TambahBarangMasuk() {
         </div>
         <div class='mb-2'>
           <label class="form-label">Stok</label>
-          <input type="number" name='stok' defaultValue={stok} class="form-control" disabled />
-          <input type="hidden" defaultValue={stok} name="stok" class="form-control" />
+          <input type="number" name='stok' defaultValue={data?.stok} class="form-control" disabled />
+          <input type="hidden" defaultValue={data?.stok} name="stok" class="form-control" />
         </div>
         <div class="mb-2 row">
           <div className='col-10'>
@@ -63,12 +48,12 @@ export default function TambahBarangMasuk() {
           </div>
           <div className='col-2'>
             <label class="form-label">Satuan</label>
-            <input type="text" defaultValue={satuan} name="satuan" class="form-control" disabled />
+            <input type="text" defaultValue={data?.satuan} name="satuan" class="form-control" disabled />
           </div>
         </div>
         <div class="mb-2">
           <label class="form-label">Keterangan</label>
-          <input type="text" name="keterangan" defaultValue='' class="form-control" />
+          <input type="text" name="keterangan" defaultValue='Barang masuk' class="form-control" />
         </div>
         <button type="submit" class="btn btn-md btn-success w-100 mt-3">Submit</button>
       </Form>

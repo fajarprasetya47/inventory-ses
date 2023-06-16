@@ -50,8 +50,9 @@ export default function BarangKeluar() {
   return (
     <>
       <Dashboard title="Transaksi Barang Keluar" active='barangkeluar'>
-        <div className="my-2">
-          <button onClick={handleOpen} disabled={isSubmitting} className="btn btn-md btn-success">+ Barang Keluar</button>
+        <div className="my-2 d-flex gap-2">
+          <button onClick={handleOpen} disabled={isSubmitting} className="btn btn-md btn-dark-blue">+ Barang Keluar</button>
+          <Link to='/penjualan' className="btn btn-md btn-success disabled">+ Transaksi Penjualan</Link>
         </div>
         <Tabel columns={columns} rows={dataLoad?.barangKeluar} />
         <ModalLayout title='Tambah Barang Keluar' open={isSubmitting ? false : open} onClose={handleClose}>

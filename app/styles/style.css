@@ -203,6 +203,17 @@ body {
     -moz-border-radius: 50%;
 }
 
+.sales{
+    display: flex;
+    gap: 25px;
+}
+.sales .sales-add{
+    width: 40%;
+}
+.sales .sales-table{
+    width: 50%;
+}
+
 /* Media Responsive */
 @media screen and (max-width: 800px) {
     .signin-content .signin-img{
@@ -215,6 +226,15 @@ body {
         padding: 150px 20px;;
     }
     .home-button{
+        width: 100%;
+    }
+    .sales{
+        display: block;
+    }
+    .sales .sales-add{
+        width: 100%;
+    }
+    .sales .sales-table{
         width: 100%;
     }
 }

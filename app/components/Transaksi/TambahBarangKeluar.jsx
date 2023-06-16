@@ -1,13 +1,10 @@
 import { Form, useMatches } from '@remix-run/react';
 import { useState } from 'react';
 import Select from 'react-select'
-// import { DatePicker } from '@mui/x-date-pickers/DatePicker'
-// import { LocalizationProvider } from '@mui/x-date-pickers'
-// import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns'
 
 export default function TambahBarangKeluar() {
-  const [stok, setStok] = useState();
-  const [satuan, setSatuan] = useState();
+  const [data, setData] = useState();
+  const [total, setTotal] = useState();
   const matches = useMatches();
   let barang = matches.find((barang) => barang.id === 'routes/barangkeluar')?.data?.barang;
   barang = barang.filter((item) => item.status != 'kosong');
@@ -18,23 +15,21 @@ export default function TambahBarangKeluar() {
 
   const handleIdBarang = (e) => {
     const id = e.value;
-    const stok = barang.find((barang) => barang.id === id)?.stok;
-    const satuan = barang.find((barang) => barang.id === id)?.satuan;
-    setStok(stok);
-    setSatuan(satuan);
+    const barangId = barang.find((barang) => barang.id === id);
+    setData(barangId); setTotal(barangId?.hargaJual);
   }
+  const handleJumlah = (e) => {
+    const n = e.target.value;
+    const price = data?.hargaJual;
+    setTotal(n * price);
+  }
+
   return (
     <>
       <Form method='post'>
         <div class="mb-2">
           <label class="form-label">Tanggal</label>
           <div>
-            {/* <LocalizationProvider dateAdapter={AdapterDateFns}>
-              <DatePicker
-                sx={{ width: '100%' }}
-                slotProps={{ textField: { size: 'small' } }}
-              />
-            </LocalizationProvider> */}
             <input
               type="date"
               className='form-control'
@@ -49,21 +44,28 @@ export default function TambahBarangKeluar() {
           <label class="form-label">Pilih Barang</label>
           <Select onChange={handleIdBarang} options={option} name='idBarang' isSearchable={true} placeholder='Pilih Barang...' required />
         </div>
-        <div class='mb-2'>
-          <label class="form-label">Stok</label>
-          <input type="number" name='stok' defaultValue={stok} class="form-control" disabled />
-          <input type="hidden" defaultValue={stok} name="stok" class="form-control" />
+        <div class='mb-2 row'>
+          <div className='col-4'>
+            <label class="form-label">Stok</label>
+            <input type="number" name='stok' defaultValue={data?.stok} class="form-control" disabled />
+            <input type="hidden" defaultValue={data?.stok} name="stok" class="form-control" />
+          </div>
+          <div className='col-8'>
+            <label class="form-label">Harga</label>
+            <input type="number" name='totalHarga' defaultValue={total} class="form-control" disabled />
+            <input type="hidden" defaultValue={total} name="totalHarga" class="form-control" />
+          </div>
         </div>
         <div class="mb-2 row">
           <div className='col-10'>
             <label class="form-label">Jumlah Barang</label>
-            {stok ? (
-              <input type="number" min='0' max={stok} step='0.1' name="jumlahKeluar" class="form-control" required />
-            ) : <input type="number" min='0' max={stok} step='0.1' name="jumlahKeluar" class="form-control" disabled />}
+            {data ? (
+              <input type="number" onChange={handleJumlah} min='0' max={data?.stok} step='0.1' name="jumlahKeluar" class="form-control" required />
+            ) : <input type="number" min='0' max={data?.stok} step='0.1' name="jumlahKeluar" class="form-control" disabled />}
           </div>
           <div className='col-2'>
             <label class="form-label">Satuan</label>
-            <input type="text" defaultValue={satuan} name="satuan" class="form-control" disabled />
+            <input type="text" defaultValue={data?.satuan} name="satuan" class="form-control" disabled />
           </div>
         </div>
         <div class="mb-2">

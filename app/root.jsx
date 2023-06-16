@@ -58,7 +58,7 @@ export function CatchBoundary() {
       <main>
         <Error title={caughtResponse?.statusText}>
           <p>{caughtResponse.data?.message || 'Something went wrong. Please try again later.'}</p>
-          <p><Link to='/'>Back</Link></p>
+          <p><a href='/'>Back</a></p>
         </Error>
       </main>
     </Document>
@@ -71,7 +71,7 @@ export function ErrorBoundary({error}) {
       <main>
         <Error title="An error occured">
           <p>{error?.message || 'Something went wrong. Please try again later.'}</p>
-          <p><Link to='/'>Back</Link></p>
+          <p><a href='/'>Back</a></p>
         </Error>
       </main>
     </Document>

@@ -41,7 +41,7 @@ export default function Dashboard({ children, title, active }) {
                                     <li className="breadcrumb-item">Home</li>
                                     <li className="breadcrumb-item active">Dashboard</li>
                                 </ol> */}
-                                <h3 className="py-4">{title}</h3>
+                                <h3 className="py-3">{title}</h3>
                                 {children}
                             </div>
                         </main>

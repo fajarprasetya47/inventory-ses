@@ -35,6 +35,8 @@ model TransaksiKeluar {
   id            String   @id @default(auto()) @map("_id") @db.ObjectId
   tanggalKeluar DateTime
   jumlahKeluar  Float
+  penjualan     Boolean? @default(true)
+  totalHarga    Int?
   keterangan    String
   Barang        Barang   @relation(fields: [idBarang], references: [id])
   idBarang      String   @db.ObjectId

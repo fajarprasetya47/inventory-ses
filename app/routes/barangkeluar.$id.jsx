@@ -57,6 +57,10 @@ export default function barangKeluarId() {
           </div>
         </div>
         <div class="mb-2">
+          <label class="form-label">Total Harga</label>
+          <input type="number" name="totalHarga" defaultValue={data?.totalHarga} class="form-control" disabled />
+        </div>
+        <div class="mb-2">
           <label class="form-label">Keterangan</label>
           <input type="text" name="keterangan" defaultValue={data?.keterangan} class="form-control" disabled />
         </div>

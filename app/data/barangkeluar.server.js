@@ -7,6 +7,7 @@ export async function addBarangKeluar(dataBarang) {
                 tanggalKeluar: new Date(dataBarang.tanggalKeluar),
                 jumlahKeluar: +dataBarang.jumlahKeluar,
                 keterangan: dataBarang.keterangan,
+                totalHarga: +dataBarang.totalHarga,
                 Barang: { connect: { id: dataBarang.idBarang } },
             }
         });

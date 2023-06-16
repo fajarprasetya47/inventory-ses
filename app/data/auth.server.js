@@ -3,7 +3,7 @@ import { hash, compare } from "bcryptjs";
 import { prisma } from "./database.server";
 
 const SESSION_SECRET = process.env.SESSION_SECRET;
-const sessionStorage = createCookieSessionStorage({
+export const sessionStorage = createCookieSessionStorage({
     cookie: {
         secure: process.env.NODE_ENV === 'production',
         secrets: [SESSION_SECRET],
