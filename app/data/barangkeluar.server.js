@@ -20,7 +20,7 @@ export async function addBarangKeluar(dataBarang) {
 export async function getBarangKeluar() {
     try {
         const barang = await prisma.transaksiKeluar.findMany({
-            orderBy: { id: 'desc' }
+            orderBy: { tanggalKeluar: 'desc' }
         });
         return barang;
     } catch (error) {
@@ -44,6 +44,18 @@ export async function getBarangKeluarMonth(month) {
             where: {
                 tanggalKeluar: { getMonth: month },
             },
+        });
+        return barang;
+    } catch (error) {
+        console.log(error);
+        throw new Error('Failed to get Transaksi Keluar month');
+    }
+}
+export async function getBarangKeluarIdBarang(idBarang) {
+    try {
+        const barang = await prisma.transaksiKeluar.findMany({
+            where: { idBarang },
+            orderBy: { tanggalKeluar: "desc" }
         });
         return barang;
     } catch (error) {

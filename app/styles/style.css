@@ -214,6 +214,10 @@ body {
     width: 50%;
 }
 
+.prediksi-form{
+    width: 45%;
+}
+
 /* Media Responsive */
 @media screen and (max-width: 800px) {
     .signin-content .signin-img{
@@ -235,6 +239,9 @@ body {
         width: 100%;
     }
     .sales .sales-table{
+        width: 100%;
+    }
+    .prediksi-form{
         width: 100%;
     }
 }

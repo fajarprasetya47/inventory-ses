@@ -19,7 +19,7 @@ export async function addBarangMasuk(dataBarang) {
 export async function getBarangMasuk() {
     try {
         const barang = await prisma.transaksiMasuk.findMany({
-            orderBy: { id: 'desc' }
+            orderBy: { tanggalMasuk: 'desc' }
         });
         return barang;
     } catch (error) {
