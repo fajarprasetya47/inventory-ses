@@ -156,6 +156,11 @@ body {
     background-color: #fff !important;
     border-color: #0D28A6 !important;
 }
+.btn-dark-blue-outlined:hover {
+    color: #0D28A6 !important;
+    background-color: #eee !important;
+    border-color: #031c88 !important;
+}
 
 .btn-category-car {
     color: #AEB7E1;

@@ -69,14 +69,14 @@ export default function Sidebar({ active }) {
                         Data Penjualan
                     </a>
                 </div> */}
-                <Link to='/laporan'>
+                {/* <Link to='/laporan'>
                     <div className={active == 'laporan' ? "sidebar-link-active" : "sidebar-link"}>
                         <div className="sidebar-link-icon">
                             <img src='/images/file-earmark.svg' alt="file-earmark" />
                         </div>
                         Laporan
                     </div>
-                </Link>
+                </Link> */}
                 <Link to='/prediksi'>
                     <div className={active == 'prediksi' ? "sidebar-link-active" : "sidebar-link"}>
                         <div className="sidebar-link-icon">

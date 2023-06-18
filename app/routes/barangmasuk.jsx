@@ -19,7 +19,6 @@ export default function BarangMasuk() {
   const isSubmitting = navigation.state != 'idle';
 
   const columns = [
-    // { field: 'id', headerName: 'ID', width: 100 },
     {
       field: 'tanggalMasuk',
       headerName: 'Tanggal Masuk',
@@ -50,8 +49,9 @@ export default function BarangMasuk() {
   return (
     <>
       <Dashboard title="Transaksi Barang Masuk" active='barangmasuk'>
-        <div className="my-2">
+        <div className="my-2 d-flex gap-2">
           <button onClick={handleOpen} disabled={isSubmitting} className="btn btn-md btn-success">+ Barang Masuk</button>
+          <Link to='laporan' className="btn btn-md btn-dark-blue-outlined">Laporan</Link>
         </div>
         <Tabel columns={columns} rows={dataLoad?.barangMasuk} />
         <ModalLayout title='Tambah Barang Masuk' open={isSubmitting ? false : open} onClose={handleClose}>
@@ -73,7 +73,6 @@ export async function loader({request}) {
 export async function action({ request }) {
   const formData = await request.formData();
   const data = Object.fromEntries(formData);
-  // console.log(data);
   await addBarangMasuk(data);
   await updateBarang(data?.idBarang, data);
   return redirect('/barangmasuk');

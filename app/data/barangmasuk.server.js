@@ -39,15 +39,12 @@ export async function getBarangMasukId(id) {
 }
 export async function getBarangMasukMonth(month) {
     try {
-        const barang = await prisma.transaksiMasuk.findMany({
-            where: {
-                tanggalMasuk: { getMonth: month },
-            },
-        });
-        return barang;
+        const barang = await getBarangMasuk();
+        const filterBarang = barang?.filter((item) => parseInt(item?.tanggalMasuk?.toISOString()?.slice(5, 7)) == parseInt(month));
+        return filterBarang;
     } catch (error) {
         console.log(error);
-        throw new Error('Failed to get Transaksi Masuk');
+        throw new Error('Failed to get Transaksi Masuk month');
     }
 }
 
@@ -60,4 +57,33 @@ export async function deleteBarangMasuk(id) {
         console.log(error);
         throw new Error('Failed to delete Transaksi Masuk');
     }
+}
+
+export async function getReportMasukMonth(data) {
+    try {
+        const rawData = await getBarangMasukMonth(data?.bulan);
+        return getTotalPerMonth(rawData);
+    } catch (error) {
+        console.log(error);
+        throw new Error('Failed to get report month Transaksi Masuk');
+    }
+}
+
+const getTotalPerMonth = (data) => {
+    let arr = [];
+    const barangId = data?.map((i) => (
+        { id: i?.idBarang }
+    ))?.reduce((unique, item) => {
+        const found = unique?.some((obj) => obj.id === item.id);
+        if (!found) unique?.push(item);
+        return unique;
+    }, []);
+
+    for (const barang of barangId) {
+        let x = 0;
+        const items = data?.filter((i) => i.idBarang === barang.id);
+        for (const item of items) x += item.jumlahMasuk;
+        arr?.push({ id: barang?.id, total: x })
+    }
+    return arr;
 }

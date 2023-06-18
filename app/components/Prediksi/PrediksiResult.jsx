@@ -1,6 +1,9 @@
 import { useActionData, useLoaderData } from "@remix-run/react";
 import { useEffect, useState } from "react";
 import Tabel from "../Tabel";
+import { useRef } from "react";
+import { useReactToPrint } from 'react-to-print';
+
 
 const sesForecast = (data, alpha) => {
   let f = 0;
@@ -17,7 +20,7 @@ const madValue = (data) => {
     const t = Math.abs(item?.total - item?.prediksi);
     y += t;
   })
-  return (y/data?.length).toFixed(3);
+  return (y / data?.length).toFixed(3);
 }
 const mapeValue = (data) => {
   let y = 0;
@@ -25,7 +28,7 @@ const mapeValue = (data) => {
     const t = Math.abs(((item?.total - item?.prediksi) / item?.total)) * 100;
     y += t;
   })
-  return (y/data?.length).toFixed(3);
+  return (y / data?.length).toFixed(3);
 }
 
 export default function PrediksiResult() {
@@ -48,7 +51,7 @@ export default function PrediksiResult() {
     {
       field: 'bulanTahun',
       headerName: 'Bulan',
-      width: 150,
+      width: 120,
       valueGetter: (params) => (
         `${params.row.namaBulan} ${params.row.tahun}`
       )
@@ -78,7 +81,7 @@ export default function PrediksiResult() {
   return (
     <>
       <div className="my-2">
-        <h5>Data {namaBarang}</h5>
+        <h5>Data Prediksi SES {namaBarang}</h5>
         <div class="mb-2 row">
           <label class="form-label">Alpha</label>
           <div className="col-4">
@@ -90,7 +93,7 @@ export default function PrediksiResult() {
         </div>
         <div className="my-4 fore-wrap">
           <div className="fore-table">
-            <Tabel columns={columns} rows={result} />
+            <Tabel columns={columns} rows={result} print />
           </div>
           <div className="fore-form">
             <div className="mb-2">

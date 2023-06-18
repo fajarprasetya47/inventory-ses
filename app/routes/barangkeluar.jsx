@@ -19,7 +19,6 @@ export default function BarangKeluar() {
   const isSubmitting = navigation.state != 'idle';
 
   const columns = [
-    // { field: 'id', headerName: 'ID', width: 100 },
     {
       field: 'tanggalKeluar',
       headerName: 'Tanggal',
@@ -52,7 +51,8 @@ export default function BarangKeluar() {
       <Dashboard title="Transaksi Barang Keluar" active='barangkeluar'>
         <div className="my-2 d-flex gap-2">
           <button onClick={handleOpen} disabled={isSubmitting} className="btn btn-md btn-dark-blue">+ Barang Keluar</button>
-          <Link to='/penjualan' className="btn btn-md btn-success disabled">+ Transaksi Penjualan</Link>
+          {/* <Link to='/penjualan' className="btn btn-md btn-success disabled">+ Transaksi Penjualan</Link> */}
+          <Link to='laporan' className="btn btn-md btn-dark-blue-outlined">Laporan</Link>
         </div>
         <Tabel columns={columns} rows={dataLoad?.barangKeluar} />
         <ModalLayout title='Tambah Barang Keluar' open={isSubmitting ? false : open} onClose={handleClose}>
@@ -74,7 +74,6 @@ export async function loader({request}) {
 export async function action({ request }) {
   const formData = await request.formData();
   const data = Object.fromEntries(formData);
-  // console.log(data);
   await addBarangKeluar(data);
   await updateBarang(data?.idBarang, data);
   return redirect('/barangkeluar');

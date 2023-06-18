@@ -5,6 +5,8 @@ import { getBarang } from "../data/barang.server";
 import Select from "react-select";
 import { getDataMonthly } from "../data/prediksi.server";
 import PrediksiResult from "../components/Prediksi/PrediksiResult";
+import { useRef } from "react";
+import { useReactToPrint } from "react-to-print";
 
 export default function Prediksi() {
   const navigation = useNavigation();
@@ -14,6 +16,13 @@ export default function Prediksi() {
   ));
   const prediksi = useActionData();
   const isSubmitting = navigation.state != 'idle';
+
+  const componentRef = useRef();
+  const handlePrint = useReactToPrint({
+    content: () => componentRef?.current,
+    documentTitle: 'report',
+    bodyClass: 'py-5 px-3'
+  });
 
   return (
     <>
@@ -26,12 +35,18 @@ export default function Prediksi() {
             </div>
             <div className="mt-3 d-flex gap-2">
               <button type="submit" class="btn btn-md btn-dark-blue w-50" disabled={prediksi || isSubmitting}>Lihat Prediksi</button>
-              {prediksi ? <Link to="/prediksi" class="btn btn-md btn-outline-danger w-50">Clear</Link>
+              {prediksi ?
+                <>
+                  <Link to="/prediksi" class="btn btn-md btn-outline-danger">Clear</Link>
+                  <button onClick={handlePrint} className="btn btn-md btn-dark-blue">Print</button>
+                </>
                 : <></>}
             </div>
           </Form>
         </div>
-        {prediksi ? <PrediksiResult /> : <></>}
+        <div ref={componentRef}>
+          {prediksi ? <PrediksiResult /> : <></>}
+        </div>
       </Dashboard>
     </>
   );
