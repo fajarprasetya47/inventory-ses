@@ -1,34 +1,41 @@
 @import "//netdna.bootstrapcdn.com/font-awesome/3.0/css/font-awesome.css";
 
 body {
-    font-family: Helvetica, sans-serif !important; 
+    font-family: Helvetica, sans-serif !important;
     font-size: 14px !important;
     font-weight: 300 !important;
 }
-.signin-content{
+
+.signin-content {
     display: flex;
 }
-.signin-content .signin-img{
+
+.signin-content .signin-img {
     width: 65%;
 }
+
 .signin-content .signin-form {
     flex-basis: 50%;
     padding: 150px 50px;
     margin: 0 auto;
 }
-.signin-content .signin-form h1{
+
+.signin-content .signin-form h1 {
     font-size: 24px;
     font-weight: 700;
     margin-bottom: 20px;
 }
-.signin-content .signin-form img{
+
+.signin-content .signin-form img {
     margin-bottom: 30px;
 }
-.signin-content .signin-form .form input::placeholder{
+
+.signin-content .signin-form .form input::placeholder {
     font-size: 12px !important;
     font-weight: 300 !important;
     opacity: 0.5;
 }
+
 .search input {
     font-family: FontAwesome !important;
 }
@@ -44,10 +51,13 @@ body {
     width: 75px;
     color: #fff;
     overflow-y: scroll;
-    -ms-overflow-style: none;  /* Internet Explorer 10+ */
-    scrollbar-width: none;  /* Firefox */
+    -ms-overflow-style: none;
+    /* Internet Explorer 10+ */
+    scrollbar-width: none;
+    /* Firefox */
 }
-.sidebar::-webkit-scrollbar{
+
+.sidebar::-webkit-scrollbar {
     display: none;
 }
 
@@ -55,6 +65,7 @@ body {
     padding: 7px 0px;
     text-align: center;
 }
+
 .sidebar .sidebar-link:hover {
     background-color: rgb(255, 255, 255, 0.2);
     cursor: pointer;
@@ -71,6 +82,7 @@ body {
     text-decoration: none;
     color: #fff;
 }
+
 .sidebar a:hover {
     color: #fff;
 }
@@ -84,10 +96,10 @@ body {
 }
 
 .list-car-container {
-    display: flex; 
-    flex-flow: row; 
-    flex-wrap: wrap; 
-    justify-content: flex-start; 
+    display: flex;
+    flex-flow: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
     justify-items: left;
 }
 
@@ -97,7 +109,7 @@ body {
     width: 100%;
 }
 
-.table-head{
+.table-head {
     background: #CFD4ED;
 }
 
@@ -110,11 +122,15 @@ body {
     -webkit-border-radius: 50%;
     -moz-border-radius: 50%;
 }
+
 .user-avatar .initials {
     position: relative;
-    top: 8.75px; /* 25% of parent */
-    font-size: 17.5px; /* 50% of parent */
-    line-height: 17.5px; /* 50% of parent */
+    top: 8.75px;
+    /* 25% of parent */
+    font-size: 17.5px;
+    /* 50% of parent */
+    line-height: 17.5px;
+    /* 50% of parent */
     color: #000;
     font-weight: bold;
 }
@@ -128,6 +144,7 @@ body {
     color: #fff !important;
     border-color: #0D28A6 !important;
 }
+
 .btn-dark-blue:hover {
     background: #031c88 !important;
     color: #fff !important;
@@ -163,6 +180,7 @@ body {
     gap: 15px;
     margin: 20px 0;
 }
+
 .home-button {
     border: 3px solid #eee;
     border-radius: 10px;
@@ -171,9 +189,11 @@ body {
     padding: 20px 20px;
     width: 220px;
 }
+
 .home-button:hover {
     background: #eee;
 }
+
 .home-button-img {
     width: 40px;
 }
@@ -186,6 +206,7 @@ body {
     -webkit-border-radius: 50%;
     -moz-border-radius: 50%;
 }
+
 .dot-yellow {
     width: 10px;
     height: 10px;
@@ -194,6 +215,7 @@ body {
     -webkit-border-radius: 50%;
     -moz-border-radius: 50%;
 }
+
 .dot-green {
     width: 10px;
     height: 10px;
@@ -203,45 +225,68 @@ body {
     -moz-border-radius: 50%;
 }
 
-.sales{
+.sales {
     display: flex;
     gap: 25px;
 }
-.sales .sales-add{
+
+.sales .sales-add {
     width: 40%;
 }
-.sales .sales-table{
+
+.sales .sales-table {
     width: 50%;
 }
 
-.prediksi-form{
+.prediksi-form {
     width: 45%;
+}
+
+.fore-wrap {
+    display: flex;
+    gap: 20px;
+}
+.fore-table{
+    width: 50%;
 }
 
 /* Media Responsive */
 @media screen and (max-width: 800px) {
-    .signin-content .signin-img{
+    .signin-content .signin-img {
         display: none;
     }
+
     .signin-content .signin-form {
         margin: 0 auto;
         background-color: #fff;
         flex-basis: 70%;
-        padding: 150px 20px;;
+        padding: 150px 20px;
+        ;
     }
-    .home-button{
+
+    .home-button {
         width: 100%;
     }
-    .sales{
+
+    .sales {
         display: block;
     }
-    .sales .sales-add{
+
+    .sales .sales-add {
         width: 100%;
     }
-    .sales .sales-table{
+
+    .sales .sales-table {
         width: 100%;
     }
-    .prediksi-form{
+
+    .prediksi-form {
+        width: 100%;
+    }
+    .fore-wrap {
+        display: block;
+    }
+    .fore-table{
         width: 100%;
     }
 }
