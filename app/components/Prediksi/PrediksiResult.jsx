@@ -1,6 +1,7 @@
 import { useActionData, useLoaderData } from "@remix-run/react";
 import { useEffect, useState } from "react";
 import Tabel from "../Tabel";
+import PrediksiChart from "./PrediksiChart";
 
 export default function PrediksiResult() {
   const data = useActionData()?.dataMonthly;
@@ -76,6 +77,9 @@ export default function PrediksiResult() {
               <input type="number" value={mape} name="mape" class="form-control form-control-sm" disabled />
             </div>
           </div>
+        </div>
+        <div className="m-auto">
+          <PrediksiChart dataset={result} barang={namaBarang} />
         </div>
       </div>
     </>
