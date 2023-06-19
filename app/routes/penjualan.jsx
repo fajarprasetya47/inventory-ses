@@ -8,7 +8,6 @@ import Select from "react-select";
 import { Alert } from "@mui/material";
 import { addBarangKeluar } from "../data/barangkeluar.server";
 import { redirect } from "@remix-run/node";
-import { createKeranjangSession, getKeranjangFromSession } from "../data/penjualan.server";
 
 export default function Penjualan() {
   const today = new Date().toISOString()?.slice(0, 10);
@@ -74,7 +73,7 @@ export default function Penjualan() {
     setMessage();
     if (!keranjang) return;
     try {
-      return
+      return;
     } catch (error) {
       console.log(error);
     }
@@ -110,64 +109,63 @@ export default function Penjualan() {
         <div className="sales">
           <div className="sales-add">
             <div className="mb-2">{message ? <Alert severity="error">{message}</Alert> : <></>}</div>
-            {/* <Form method="post"> */}
-              <div className="mb-2">
-                <label className="form-label">Pilih Barang</label>
-                <Select onChange={handleBarang} value={data ? option?.find(item => item.value == data?.id) : undefined} options={option} name='idBarang' isSearchable={true} placeholder='Pilih Barang...' required />
-                <input type="hidden" name='id' defaultValue={data ? data?.id : '0'} className="form-control form-control-sm" />
-                <input type="hidden" name='namaBarang' defaultValue={data ? data?.namaBarang : ''} className="form-control form-control-sm" />
+            <div className="mb-2">
+              <label className="form-label">Pilih Barang</label>
+              <Select onChange={handleBarang} value={data ? option?.find(item => item.value == data?.id) : undefined} options={option} name='idBarang' isSearchable={true} placeholder='Pilih Barang...' required />
+              <input type="hidden" name='id' defaultValue={data ? data?.id : '0'} className="form-control form-control-sm" />
+              <input type="hidden" name='namaBarang' defaultValue={data ? data?.namaBarang : ''} className="form-control form-control-sm" />
+            </div>
+            <div className="mb-2 row">
+              <div className='col-3'>
+                <label className="form-label">Stok</label>
+                <input type="number" name='stok' defaultValue={data ? data?.stok : '0'} className="form-control form-control-sm" disabled />
+                <input type="hidden" name='stok' defaultValue={data ? data?.stok : '0'} className="form-control form-control-sm" />
               </div>
-              <div className="mb-2 row">
-                <div className='col-3'>
-                  <label className="form-label">Stok</label>
-                  <input type="number" name='stok' defaultValue={data ? data?.stok : '0'} className="form-control form-control-sm" disabled />
-                  <input type="hidden" name='stok' defaultValue={data ? data?.stok : '0'} className="form-control form-control-sm" />
-                </div>
-                <div className='col-9'>
-                  <label className="form-label">Harga</label>
-                  <input type="number" name='hargaJual' defaultValue={data ? data?.hargaJual : '0'} className="form-control form-control-sm" disabled />
-                  <input type="hidden" name='hargaJual' defaultValue={data ? data?.hargaJual : '0'} className="form-control form-control-sm" />
-                </div>
+              <div className='col-9'>
+                <label className="form-label">Harga</label>
+                <input type="number" name='hargaJual' defaultValue={data ? data?.hargaJual : '0'} className="form-control form-control-sm" disabled />
+                <input type="hidden" name='hargaJual' defaultValue={data ? data?.hargaJual : '0'} className="form-control form-control-sm" />
               </div>
-              <div className="mb-2 row">
-                <div className='col-10'>
-                  <label className="form-label">Jumlah Barang</label>
-                  {data ?
-                    <input type="number" onChange={handleTotal} value={jumlahKeluar} min='0' max={data?.stok} step='0.1' name="jumlahKeluar" className="form-control form-control-sm" required />
-                    : <input type="number" step='0.1' name="jumlahKeluar" value='0' className="form-control form-control-sm" disabled />}
-                </div>
-                <div className='col-2'>
-                  <label className="form-label">Satuan</label>
-                  <input type="text" defaultValue={data ? data?.satuan : ''} name="satuan" className="form-control form-control-sm" disabled />
-                </div>
+            </div>
+            <div className="mb-2 row">
+              <div className='col-10'>
+                <label className="form-label">Jumlah Barang</label>
+                {data ?
+                  <input type="number" onChange={handleTotal} value={jumlahKeluar} min='0' max={data?.stok} step='0.1' name="jumlahKeluar" className="form-control form-control-sm" required />
+                  : <input type="number" step='0.1' name="jumlahKeluar" value='0' className="form-control form-control-sm" disabled />}
               </div>
-              <div class="mb-2">
-                <label className="form-label">Total</label>
-                <input type="number" name='totalHarga' value={total ? total : '0'} className="form-control form-control-sm" disabled />
-                <input type="hidden" name='totalHarga' value={total ? total : '0'} className="form-control form-control-sm" />
+              <div className='col-2'>
+                <label className="form-label">Satuan</label>
+                <input type="text" defaultValue={data ? data?.satuan : ''} name="satuan" className="form-control form-control-sm" disabled />
               </div>
-              <div className="mb-3 row">
-                <div class="col-6">
-                  <label class="form-label">Tanggal</label>
-                  <div>
-                    <input
-                      type="date"
-                      className='form-control form-control-sm'
-                      name="tanggalKeluar"
-                      onChange={(e) => setTanggaKeluar(e.target.value)}
-                      max={today}
-                      value={tanggalKeluar}
-                      required
-                    />
-                  </div>
-                </div>
-                <div class="col-6">
-                  <label class="form-label">Keterangan</label>
-                  <input onChange={(e) => setKeterangan(e.target.value)} type="text" name="keterangan" value={keterangan} class="form-control form-control-sm" />
+            </div>
+            <div class="mb-2">
+              <label className="form-label">Total</label>
+              <input type="number" name='totalHarga' value={total ? total : '0'} className="form-control form-control-sm" disabled />
+              <input type="hidden" name='totalHarga' value={total ? total : '0'} className="form-control form-control-sm" />
+            </div>
+            <div className="mb-3 row">
+              <div class="col-6">
+                <label class="form-label">Tanggal</label>
+                <div>
+                  <input
+                    type="date"
+                    className='form-control form-control-sm'
+                    name="tanggalKeluar"
+                    onChange={(e) => setTanggaKeluar(e.target.value)}
+                    max={today}
+                    value={tanggalKeluar}
+                    required
+                  />
                 </div>
               </div>
-              <button onClick={inputKeranjang} className="btn btn-sm btn-dark-blue w-100 my-3">Tambah</button>
-            {/* </Form> */}
+              <div class="col-6">
+                <label class="form-label">Keterangan</label>
+                <input onChange={(e) => setKeterangan(e.target.value)} type="text" name="keterangan" value={keterangan} class="form-control form-control-sm" />
+              </div>
+            </div>
+            <button onClick={inputKeranjang} className="btn btn-sm btn-dark-blue w-100 my-3">Tambah</button>
+
           </div>
           <div className="sales-table">
             <Tabel columns={columns} rows={keranjang} />
@@ -198,8 +196,5 @@ export async function action({ request }) {
   const formData = await request.formData();
   const data = Object.fromEntries(formData);
   console.log(data);
-  //return await createKeranjangSession(data);
-  // await addBarangKeluar(data);
-  // await updateBarang(data?.idBarang, data);
   return redirect('/penjualan');
 }

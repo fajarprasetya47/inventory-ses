@@ -5,7 +5,6 @@ export async function getDataMonthly(data) {
         const transBarang = await getBarangKeluarIdBarang(data?.idBarang);
         const monthlyTotal = getTotalPerMonth(transBarang);
         return monthlyTotal;
-        // return sesForecast(dataTotal, '0.1');
     } catch (error) {
         console.log(error);
         throw new Error('Failed to get data Prediksi');
@@ -41,14 +40,4 @@ const getTotalPerMonth = (data) => {
 
 const monthOrder = (array) => {
     return array?.sort((a, b) => a?.id - b?.id);
-}
-
-const sesForecast = (data, alpha) => {
-    let f = 0;
-    const fore = data?.map((item, index) => {
-        if (index == 0) return { ...item, prediksi: f = item?.total };
-        f = ((parseFloat(alpha) * data[index-1]?.total) + ((1 - parseFloat(alpha)) * f)).toFixed(2);
-        return { ...item, prediksi: f };
-    })
-    return fore;
 }

@@ -1,35 +1,6 @@
 import { useActionData, useLoaderData } from "@remix-run/react";
 import { useEffect, useState } from "react";
 import Tabel from "../Tabel";
-import { useRef } from "react";
-import { useReactToPrint } from 'react-to-print';
-
-
-const sesForecast = (data, alpha) => {
-  let f = 0;
-  const fore = data?.map((item, index) => {
-    if (index == 0) return { ...item, prediksi: f = item?.total };
-    f = ((parseFloat(alpha) * data[index - 1]?.total) + ((1 - parseFloat(alpha)) * f)).toFixed(2);
-    return { ...item, prediksi: f };
-  })
-  return fore;
-}
-const madValue = (data) => {
-  let y = 0;
-  data?.forEach((item) => {
-    const t = Math.abs(item?.total - item?.prediksi);
-    y += t;
-  })
-  return (y / data?.length).toFixed(3);
-}
-const mapeValue = (data) => {
-  let y = 0;
-  data?.forEach((item) => {
-    const t = Math.abs(((item?.total - item?.prediksi) / item?.total)) * 100;
-    y += t;
-  })
-  return (y / data?.length).toFixed(3);
-}
 
 export default function PrediksiResult() {
   const data = useActionData()?.dataMonthly;
@@ -109,4 +80,30 @@ export default function PrediksiResult() {
       </div>
     </>
   )
+}
+
+const sesForecast = (data, alpha) => {
+  let f = 0;
+  const fore = data?.map((item, index) => {
+    if (index == 0) return { ...item, prediksi: f = item?.total };
+    f = ((parseFloat(alpha) * data[index - 1]?.total) + ((1 - parseFloat(alpha)) * f)).toFixed(2);
+    return { ...item, prediksi: f };
+  })
+  return fore;
+}
+const madValue = (data) => {
+  let y = 0;
+  data?.forEach((item) => {
+    const t = Math.abs(item?.total - item?.prediksi);
+    y += t;
+  })
+  return (y / data?.length).toFixed(3);
+}
+const mapeValue = (data) => {
+  let y = 0;
+  data?.forEach((item) => {
+    const t = Math.abs(((item?.total - item?.prediksi) / item?.total)) * 100;
+    y += t;
+  })
+  return (y / data?.length).toFixed(3);
 }

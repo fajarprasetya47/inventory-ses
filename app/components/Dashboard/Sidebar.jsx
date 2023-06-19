@@ -1,19 +1,6 @@
-import { useState } from "react"
 import { Link } from "@remix-run/react";
-import { Collapse } from "@mui/material";
 
 export default function Sidebar({ active }) {
-    const [display, setDisplay] = useState(false);
-    const handleOpen = () => {
-        if (display == false) {
-            setDisplay(true);
-            return;
-        }
-        if (display == true) {
-            setDisplay(false);
-            return;
-        }
-    }
     return (
         <>
             <div className="sidebar">
@@ -36,13 +23,6 @@ export default function Sidebar({ active }) {
                         Barang
                     </div>
                 </Link>
-                {/* <div onClick={handleOpen} className={active == 'transaksi' ? "sidebar-link-active" : "sidebar-link"}>
-                    <div className="sidebar-link-icon">
-                        <img src='/images/arrow-left-right.svg' alt="arrow-left-right" />
-                    </div>
-                    Transaksi
-                    <img src='/images/chevron-compact-down.svg' alt="chevron-compact-down" style={{ width: '16px' }} />
-                </div> */}
                 <Link to='/barangmasuk'>
                     <div className={active == 'barangmasuk' ? "sidebar-link-active" : "sidebar-link"}>
                         <div>
@@ -59,24 +39,6 @@ export default function Sidebar({ active }) {
                         Barang Keluar
                     </div>
                 </Link>
-                {/* <Collapse in={display} style={{ minHeight: 'auto' }}>
-                </Collapse> */}
-                {/* <div className={active == 'penjualan' ? "sidebar-link-active" : "sidebar-link"}>
-                    <a href="/penjualan">
-                        <div className="sidebar-link-icon">
-                            <img src='/images/file-spreadsheet.svg' alt="graph-up-arrow" />
-                        </div>
-                        Data Penjualan
-                    </a>
-                </div> */}
-                {/* <Link to='/laporan'>
-                    <div className={active == 'laporan' ? "sidebar-link-active" : "sidebar-link"}>
-                        <div className="sidebar-link-icon">
-                            <img src='/images/file-earmark.svg' alt="file-earmark" />
-                        </div>
-                        Laporan
-                    </div>
-                </Link> */}
                 <Link to='/prediksi'>
                     <div className={active == 'prediksi' ? "sidebar-link-active" : "sidebar-link"}>
                         <div className="sidebar-link-icon">

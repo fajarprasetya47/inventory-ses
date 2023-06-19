@@ -5,7 +5,6 @@ import { deleteBarang, getBarangId, updateBarang } from "../data/barang.server";
 import { redirect } from "@remix-run/node";
 
 export default function barangId() {
-  // const params = useParams();
   const handleClose = () => {
     window.history.back()
   }
