@@ -1,6 +1,7 @@
-import { Link } from "@remix-run/react";
+import { Link, useLoaderData } from "@remix-run/react";
 
 export default function Sidebar({ active }) {
+    const user = useLoaderData()?.userId;
     return (
         <>
             <div className="sidebar">
@@ -47,14 +48,16 @@ export default function Sidebar({ active }) {
                         Prediksi
                     </div>
                 </Link>
-                <Link to='/pengguna'>
-                    <div className={active == 'pengguna' ? "sidebar-link-active" : "sidebar-link"}>
-                        <div className="sidebar-link-icon">
-                            <img src='/images/person.svg' alt="person" />
+                {user?.role != 'admin' ? <></> :
+                    <Link to='/pengguna'>
+                        <div className={active == 'pengguna' ? "sidebar-link-active" : "sidebar-link"}>
+                            <div className="sidebar-link-icon">
+                                <img src='/images/person.svg' alt="person" />
+                            </div>
+                            Pengguna
                         </div>
-                        Pengguna
-                    </div>
-                </Link>
+                    </Link>
+                }
             </div>
         </>
     )

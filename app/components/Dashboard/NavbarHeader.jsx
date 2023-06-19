@@ -1,4 +1,4 @@
-import { Link, useFetcher, useLoaderData } from "@remix-run/react"
+import { useFetcher, useLoaderData } from "@remix-run/react"
 
 export default function NavbarHeader() {
     const user = useLoaderData()?.userId;

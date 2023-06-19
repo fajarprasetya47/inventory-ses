@@ -9,6 +9,7 @@ import { redirect } from '@remix-run/node';
 
 export default function Pengguna() {
   const user = useLoaderData()?.user;
+  const userId = useLoaderData()?.userId;
   const fetcher = useFetcher();
   const navigation = useNavigation();
   const [open, setOpen] = React.useState(false);
@@ -45,7 +46,9 @@ export default function Pengguna() {
       renderCell: (params) => {
         return (
           <div className='d-flex flex-direction-column gap-3'>
-            <button onClick={() => deleteHandle(params.row.id)} className='btn btn-sm btn-danger'>Hapus</button>
+            {params.row.id != userId?.id && userId?.role == 'admin' ?
+              <button onClick={() => deleteHandle(params.row.id)} className='btn btn-sm btn-danger'>Hapus</button>
+              : <></>}
           </div>
         )
       },
@@ -56,7 +59,9 @@ export default function Pengguna() {
     <>
       <Dashboard title="Daftar Pengguna" active='pengguna'>
         <div className="my-2">
-          <button onClick={handleOpen} disabled={isSubmitting} className="btn btn-md btn-success">+ Tambah Pengguna</button>
+          {userId?.role == 'admin' ?
+            <button onClick={handleOpen} disabled={isSubmitting} className="btn btn-md btn-success">+ Tambah Pengguna</button>
+            : <></>}
         </div>
         <Tabel columns={columns} rows={user} />
         <ModalLayout title='Tambah Pengguna' open={isSubmitting ? false : open} onClose={handleClose}>
@@ -67,10 +72,10 @@ export default function Pengguna() {
   );
 }
 
-export async function loader({request}) {
-  const userId =  await requireUserSession(request);
+export async function loader({ request }) {
+  const userId = await requireUserSession(request);
   const user = await getPengguna();
-  return {user, userId};
+  return { user, userId };
 }
 
 export async function action({ request }) {

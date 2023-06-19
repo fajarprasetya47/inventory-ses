@@ -54,8 +54,12 @@ export default function LaporanBarangKeluar() {
             <div class="mb-2">
               <label class="form-label">Pilih Bulan</label>
               <div className='row'>
-                <Select className='col-5' defaultInputValue='Juli' options={bulan} name='bulan' isSearchable={true} placeholder='Bulan' required />
-                <input type="number" className='col-4' name='tahun' defaultValue='2023' class="form-control" disabled />
+                <div className='col-5'>
+                  <Select options={bulan} name='bulan' isSearchable={true} placeholder='Bulan' required />
+                </div>
+                <div className='col-4'>
+                  <input type="number" name='tahun' defaultValue='2023' class="form-control" disabled />
+                </div>
               </div>
             </div>
             <div className="mt-3 d-flex gap-2">
