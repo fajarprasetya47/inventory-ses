@@ -1,0 +1,46 @@
+{
+  "private": true,
+  "sideEffects": false,
+  "scripts": {
+    "build": "remix build",
+    "dev": "remix dev",
+    "start": "cross-env NODE_ENV=production netlify dev",
+    "typecheck": "tsc"
+  },
+  "dependencies": {
+    "@emotion/react": "^11.11.0",
+    "@emotion/styled": "^11.11.0",
+    "@mui/material": "^5.13.3",
+    "@mui/styled-engine-sc": "^5.12.0",
+    "@mui/x-data-grid": "^6.6.0",
+    "@netlify/functions": "^1.4.0",
+    "@prisma/client": "^4.15.0",
+    "@remix-run/css-bundle": "^1.12.0",
+    "@remix-run/netlify": "^1.12.0",
+    "@remix-run/node": "^1.12.0",
+    "@remix-run/react": "^1.12.0",
+    "bcryptjs": "^2.4.3",
+    "chart.js": "^4.3.0",
+    "cross-env": "^7.0.3",
+    "isbot": "^3.6.8",
+    "react": "^18.2.0",
+    "react-chartjs-2": "^5.2.0",
+    "react-dom": "^18.2.0",
+    "react-select": "^5.7.3",
+    "react-to-print": "^2.14.13",
+    "styled-components": "^5.3.11"
+  },
+  "devDependencies": {
+    "@remix-run/dev": "^1.12.0",
+    "@remix-run/eslint-config": "^1.12.0",
+    "@remix-run/serve": "^1.12.0",
+    "@types/react": "^18.0.35",
+    "@types/react-dom": "^18.0.11",
+    "eslint": "^8.38.0",
+    "prisma": "^4.15.0",
+    "typescript": "^5.0.4"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}

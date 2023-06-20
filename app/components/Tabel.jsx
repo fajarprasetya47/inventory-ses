@@ -1,0 +1,23 @@
+// import * as React from 'react'
+import { DataGrid } from '@mui/x-data-grid'
+
+export default function Tabel({ columns, rows, print }) {
+  return (
+    <>
+      <div style={{ height: print ? '100%' : 400, width: '100%' }}>
+        <DataGrid
+          columns={columns}
+          rows={rows}
+          initialState={{
+            pagination: {
+              paginationModel: { page: 0, pageSize: 10 },
+            },
+          }}
+          pageSizeOptions={[10, 20, 50]}
+          // checkboxSelection
+          showColumnVerticalBorder
+        />
+      </div>
+    </>
+  )
+}
