@@ -1,5 +1,6 @@
+import { redirect } from "@remix-run/node";
 import LoginLayout from "../components/Login/LoginLayout";
-import { login } from "../data/auth.server";
+import { login, requireUserSession } from "../data/auth.server";
 
 export default function Login() {
   return (
@@ -7,6 +8,12 @@ export default function Login() {
       <LoginLayout />
     </>
   )
+}
+
+export async function loader({request}) {
+  const userId = await requireUserSession(request);
+  if(userId) redirect('/');
+  return { userId };
 }
 
 export async function action({request}){
