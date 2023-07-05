@@ -6,10 +6,11 @@ export default function TambahPengguna() {
             <Form method="post">
                 <div className="mb-2">
                     <label className="form-label">Pilih Peran</label>
-                    <select name="role" className="form-select">
+                    <select name="role" className="form-select" disabled>
                         <option value="admin" selected>Admin</option>
                         <option value="pos">POS</option>
                     </select>
+                    <input type="hidden" name="role" value='admin' />
                 </div>
                 <div className="mb-2">
                     <label className="form-label">Username</label>
