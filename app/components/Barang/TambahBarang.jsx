@@ -48,12 +48,7 @@ export default function TambahBarang() {
           <label class="form-label">Stok</label>
           <input type="number" name="stok" step='0.1' defaultValue='0' class="form-control" disabled />
         </div>
-        <button
-          type="submit"
-          // disabled={isSubmitting}
-          class="btn btn-md btn-success w-100 mt-3"
-        >
-          {/* {isSubmitting ? 'Saving..' : 'Submit'} */}
+        <button type="submit" disabled={isSubmitting} class="btn btn-md btn-success w-100 mt-3">
           Submit
         </button>
       </Form>

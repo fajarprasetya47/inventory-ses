@@ -17,10 +17,7 @@ const style = {
 export default function ModalLayout({ children, onClose, open, title }) {
     return (
         <div>
-            <Modal
-                open={open}
-                onClose={onClose}
-            >
+            <Modal open={open} onClose={onClose}>
                 <Box sx={style}>
                     <div className="modal-wrap">
                         <div className="d-flex flex-direction-column justify-content-between">

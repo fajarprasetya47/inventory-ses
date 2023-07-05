@@ -1,21 +1,11 @@
-import { Form, useActionData, useLoaderData, useMatches, useNavigation, useParams } from '@remix-run/react'
-import { Alert, Collapse } from '@mui/material';
-import { useState } from 'react';
+import { Form, useLoaderData, useNavigation } from '@remix-run/react'
 import Select from 'react-select';
 
 export default function EditBarang() {
-  // const [open, setOpen] = useState(true);
-  // const message = useActionData();
-  // const params = useParams();
   const barangId = useLoaderData();
-  console.log(barangId);
-
+  
   const navigation = useNavigation();
   const isSubmitting = navigation.state != 'idle';
-
-  // if (params.id && !barangId) {
-  //   throw new Error('Invalid Id');
-  // }
 
   const option = [
     { label: 'Pcs', value: 'Pcs' },
@@ -24,18 +14,6 @@ export default function EditBarang() {
 
   return (
     <>
-      {/* {message != undefined ? (
-        <Collapse in={open}>
-          <Alert
-            severity='success'
-            onClose={() => { 
-              setOpen(false);
-            }}
-          >
-            {message}
-          </Alert>
-        </Collapse>
-      ) : <></>} */}
       <Form method='patch'>
         <div class="mb-2">
           <label class="form-label">Nama Barang</label>
@@ -73,7 +51,6 @@ export default function EditBarang() {
           class="btn btn-md btn-warning w-100 mt-3"
         >
           {isSubmitting ? 'Saving..' : 'Edit'}
-          {/* Submit */}
         </button>
       </Form>
     </>

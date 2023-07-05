@@ -1,5 +1,4 @@
-
-function Error({ title, children }) {
+export default function Error({ title, children }) {
   return (
     <div className="w-50 m-auto text-center py-4 text-decoration-none">
       <img
@@ -13,5 +12,3 @@ function Error({ title, children }) {
     </div>
   );
 }
-
-export default Error;

@@ -1,4 +1,3 @@
-// import * as React from 'react'
 import { DataGrid } from '@mui/x-data-grid'
 
 export default function Tabel({ columns, rows, print }) {
@@ -14,7 +13,6 @@ export default function Tabel({ columns, rows, print }) {
             },
           }}
           pageSizeOptions={[10, 20, 50]}
-          // checkboxSelection
           showColumnVerticalBorder
         />
       </div>

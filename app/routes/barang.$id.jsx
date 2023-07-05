@@ -24,7 +24,6 @@ export async function loader({ params }) {
 
 export async function action({ params, request }) {
   const idBarang = params.id;
-
   if (request.method === 'PATCH') {
     const formData = await request.formData();
     const dataBarang = Object.fromEntries(formData);
