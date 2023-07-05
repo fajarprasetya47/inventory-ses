@@ -13,7 +13,7 @@ export default function LoginLayout() {
             <div className="form">
               <div className="mb-3">
                 <label className="form-label">Username</label>
-                <input type="text" name="username" required className="form-control" placeholder="Contoh: admin" />
+                <input type="text" name="username" required className="form-control" placeholder="Username" />
               </div>
               <div className="mb-3">
                 <label className="form-label">Password</label>
