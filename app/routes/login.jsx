@@ -12,7 +12,7 @@ export default function Login() {
 
 export async function loader({request}) {
   const userId = await requireUserSession(request);
-  if(userId) redirect('/');
+  if(userId) return redirect('/');
   return { userId };
 }
 
