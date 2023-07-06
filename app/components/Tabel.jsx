@@ -12,7 +12,7 @@ export default function Tabel({ columns, rows, print }) {
               paginationModel: { page: 0, pageSize: 10 },
             },
           }}
-          pageSizeOptions={[50, 100]}
+          pageSizeOptions={[10, 20, 50]}
           showColumnVerticalBorder
         />
       </div>
