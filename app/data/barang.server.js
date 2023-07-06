@@ -21,7 +21,7 @@ export async function addBarang(dataBarang) {
 export async function getBarang() {
     try {
         const barang = await prisma.barang.findMany({
-            orderBy: { id: 'desc' }
+            orderBy: { namaBarang: 'asc' }
         });
         return barang;
     } catch (error) {
