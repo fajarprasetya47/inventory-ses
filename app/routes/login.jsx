@@ -10,11 +10,11 @@ export default function Login() {
   )
 }
 
-export async function loader({request}) {
-  const userId = await requireUserSession(request);
-  if(userId) return redirect('/');
-  return { userId };
-}
+// export async function loader({request}) {
+//   const userId = await requireUserSession(request);
+//   if(userId) return redirect('/');
+//   return { userId };
+// }
 
 export async function action({request}){
   const formData = await request.formData();
