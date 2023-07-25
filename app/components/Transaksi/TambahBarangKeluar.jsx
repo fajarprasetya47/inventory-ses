@@ -60,8 +60,8 @@ export default function TambahBarangKeluar() {
           <div className='col-10'>
             <label class="form-label">Jumlah Barang</label>
             {data ? (
-              <input type="number" onChange={handleJumlah} min='0' max={data?.stok} step='0.1' name="jumlahKeluar" class="form-control" required />
-            ) : <input type="number" min='0' max={data?.stok} step='0.1' name="jumlahKeluar" class="form-control" disabled />}
+              <input type="number" onChange={handleJumlah} min='1' max={data?.stok} step='0.1' name="jumlahKeluar" class="form-control" required />
+            ) : <input type="number" min='1' max={data?.stok} step='0.1' name="jumlahKeluar" class="form-control" disabled />}
           </div>
           <div className='col-2'>
             <label class="form-label">Satuan</label>

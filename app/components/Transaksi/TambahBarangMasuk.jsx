@@ -44,7 +44,7 @@ export default function TambahBarangMasuk() {
         <div class="mb-2 row">
           <div className='col-10'>
             <label class="form-label">Jumlah Barang Masuk</label>
-            <input type="number" min='0' step='0.1' name="jumlahMasuk" class="form-control" required />
+            <input type="number" min='1' step='0.1' name="jumlahMasuk" class="form-control" required />
           </div>
           <div className='col-2'>
             <label class="form-label">Satuan</label>
